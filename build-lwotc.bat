@@ -1,5 +1,8 @@
 @echo off
 
+set XCOM2SDKPATH=Z:\mnt\.local\share\Steam\steamapps\common\XCOM 2 War of the Chosen SDK
+set XCOM2GAMEPATH=Z:\mnt\.local\share\Steam\steamapps\common\XCOM 2\XCOM2WotC
+
 if "%XCOM2SDKPATH%" == "" (
     echo You need to specify the location of the XCOM 2 WOTC SDK in the XCOM2SDKPATH environment variable
     exit /b 1
@@ -11,4 +14,4 @@ if "%XCOM2GAMEPATH%" == "" (
 )
 
 rem The trailing backslash after %~dp0 is important, otherwise PowerShell thinks the " is being escaped!
-powershell.exe -NonInteractive -ExecutionPolicy Unrestricted  -file "%~dp0.scripts\build.ps1" -srcDirectory "%~dp0\" -sdkPath "%XCOM2SDKPATH%" -gamePath "%XCOM2GAMEPATH%" %*
+"C:\Program Files\PowerShell\7\pwsh.exe" -NonInteractive -ExecutionPolicy Unrestricted  -file "%~dp0.scripts\build.ps1" -srcDirectory "%~dp0\" -sdkPath "%XCOM2SDKPATH%" -gamePath "%XCOM2GAMEPATH%" %*

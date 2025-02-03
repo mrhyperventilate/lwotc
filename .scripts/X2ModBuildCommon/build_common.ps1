@@ -108,28 +108,9 @@ class BuildProject {
 			$this._PerformStep({ ($_)._CopyToSrc() }, "Populating", "Populated", "Development\Src folder")
 			$this._PerformStep({ ($_)._RunPreMakeHooks() }, "Running", "Ran", "Pre-Make hooks")
 			$this._PerformStep({ ($_)._CheckCleanCompiled() }, "Verifying", "Verified", "compiled script packages")
-			$this._PerformStep({ ($_)._RunMakeBase() }, "Compiling", "Compiled", "base-game script packages")
+			# $this._PerformStep({ ($_)._RunMakeBase() }, "Compiling", "Compiled", "base-game script packages")
 			$this._PerformStep({ ($_)._RunMakeMod() }, "Compiling", "Compiled", "mod script packages")
 			$this._RecordCoreTimestamp()
-			if ($this.isHl) {
-				if (-not $this.debug) {
-					$this._PerformStep({ ($_)._RunCookHL() }, "Cooking", "Cooked", "Highlander packages")
-				} else {
-					Write-Host "Skipping cooking as debug build"
-				}
-			}
-			$this._PerformStep({ ($_)._CopyScriptPackages() }, "Copying", "Copied", "compiled script packages")
-			
-			# The shader step needs to happen before cooking - precompiler gets confused by some inlined materials
-			$this._PerformStep({ ($_)._PrecompileShaders() }, "Precompiling", "Precompiled", "shaders")
-	
-			$this._PerformStep({ ($_)._RunCookAssets() }, "Cooking", "Cooked", "mod assets")
-	
-			# Do this last as there is no need for it earlier - the cooker obviously has access to the game assets
-			# and precompiling shaders seems to do nothing (I assume they are included in the game's GlobalShaderCache)
-			$this._PerformStep({ ($_)._CopyMissingUncooked() }, "Copying", "Copied", "requested uncooked packages")
-	
-			$this._PerformStep({ ($_)._FinalCopy() }, "Copying", "Copied", "built mod to game directory")
 			$fullStopwatch.Stop()
 			$this._ReportTimings($fullStopwatch)
 			SuccessMessage "*** SUCCESS! ($(FormatElapsed $fullStopwatch.Elapsed)) ***" $this.modNameCanonical
