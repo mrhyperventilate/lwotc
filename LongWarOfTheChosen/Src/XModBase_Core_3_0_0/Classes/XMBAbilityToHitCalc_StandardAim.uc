@@ -16,9 +16,6 @@
 //---------------------------------------------------------------------------------------
 class XMBAbilityToHitCalc_StandardAim extends X2AbilityToHitCalc_StandardAim implements(XMBOverrideInterface) config(RedFog);
 
-// Red Fog config integration
-var config bool bBonusAimingAnglesForAll;
-
 // XModBase version
 var int MajorVersion, MinorVersion, PatchVersion;
 
@@ -708,6 +705,11 @@ function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableT
 
 	local int Major, Minor, Patch;
 
+	local TTile UnitTileLocation, TargetTileLocation;
+	local ECoverType NextTileOverCoverType;
+	local float maxAnglePenaltyToCover;
+	local int AngleBonus;
+
 	GetOverrideVersion(Major, Minor, Patch);
 
 	//`Log("XMB final hit modifiers called. version:" @Major$"."$Minor$"."$Patch, , 'TedLog');
@@ -761,11 +763,12 @@ function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableT
 						}
 					}
 				}
-				// reverse engineer implementation of Bonus Aiming Angles for All from RedDobe
 
+				// reverse engineer implementation of Bonus Aiming Angles for All from RedDobe
+				// [mrhyperventilate] Remove or halve angle bonus on extended cover in same direction to shooter
 				if(!bMeleeAttack && TargetState.CanTakeCover())
 				{
-					if(default.bBonusAimingAnglesForAll && m_ShotBreakdown.Modifiers.Find('Reason', class'XLocalizedData'.default.AngleToTargetCover) == INDEX_NONE)
+					if(m_ShotBreakdown.Modifiers.Find('Reason', class'XLocalizedData'.default.AngleToTargetCover) == INDEX_NONE)
 					{
 
 						if( VisInfo.TargetCover != CT_None && !bIgnoreCoverBonus )
@@ -780,11 +783,24 @@ function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableT
 								break;
 							}
 						}
+
+						UnitState.GetKeystoneVisibilityLocation(UnitTileLocation);
+						TargetState.GetKeystoneVisibilityLocation(TargetTileLocation);
+						NextTileOverCoverType = NextTileOverCoverInSameDirection(UnitTileLocation, TargetTileLocation);
+						maxAnglePenaltyToCover = MAX_ANGLE_PENALTY;
+
+						if ((NextTileOverCoverType == CT_MidLevel && VisInfo.TargetCover == CT_MidLevel) || NextTileOverCoverType == CT_Standing) {
+							// Disable cover angle bonus if the next tile in the same direction has the same or better cover
+							maxAnglePenaltyToCover = MIN_ANGLE_PENALTY;
+						} else if (VisInfo.TargetCover == CT_Standing && NextTileOverCoverType == CT_MidLevel) {
+							// Halve cover angle bonus if target has high cover and the next tile in the same direction has half cover
+							maxAnglePenaltyToCover = MAX_ANGLE_PENALTY/2.0;
+						}
+
 						Alpha = FClamp((VisInfo.TargetCoverAngle - MIN_ANGLE_TO_COVER) / (MAX_ANGLE_TO_COVER - MIN_ANGLE_TO_COVER), 0.0, 1.0);
-						AngleToCoverModifier = Lerp(MAX_ANGLE_BONUS_MOD,
-													MIN_ANGLE_BONUS_MOD,
-													Alpha);
-						AddModifier(Round(CoverValue * AngleToCoverModifier), class'XLocalizedData'.default.AngleToTargetCover, m_ShotBreakdown, eHit_Success, bDebugLog);
+						AngleToCoverModifier = Lerp(maxAnglePenaltyToCover, MIN_ANGLE_PENALTY, Alpha)/100.0;
+						AngleBonus = Round(CoverValue * AngleToCoverModifier);
+						AddModifier(AngleBonus, class'XLocalizedData'.default.AngleToTargetCover, m_ShotBreakdown, eHit_Success, bDebugLog);
 					}
 				}
 			}
