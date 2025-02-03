@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+run rsync -av --delete ~/Games/XCOM2/src/lwotc/LongWarOfTheChosen/Config/ ~/Games/XCOM2/workshop/2683996590/Config/
+run rsync -av --delete ~/Games/XCOM2/src/SDK/XComGame/Mods/LongWarOfTheChosen/Localization/ ~/Games/XCOM2/workshop/2683996590/Localization/
