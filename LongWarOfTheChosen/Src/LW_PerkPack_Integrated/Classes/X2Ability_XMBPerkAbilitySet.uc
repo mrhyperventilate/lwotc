@@ -1679,13 +1679,13 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 {
 	local X2AbilityTemplate             Template;
 	local X2Effect_PersistentStatChange Effect;
-	local X2Effect_Persistent ShadowstepEffect;
+	local X2Effect_MovingTarget_LW MovingTargetEffect;
 	
 	// Activated ability that targets user
 	Template = SelfTargetActivated('Dedication_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Dedication", true, none, class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY, eCost_Free);
 	Template.bShowActivation = true;
 
-	// Create a persistent stat change effect that grants a mobility bonus - naming the effect Shadowstep lets you ignore reaction fire
+	// Create a persistent stat change effect that grants a mobility bonus
 	Effect = new class'X2Effect_PersistentStatChange';
 	Effect.EffectName = 'DedicationMobility';
 	Effect.AddPersistentStatChange(eStat_Mobility, default.DEDICATION_MOBILITY);
@@ -1693,12 +1693,12 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 	Effect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
     Template.AddTargetEffect(Effect);
 
-
-	ShadowstepEffect = new class'X2Effect_Persistent';
-	ShadowstepEffect.EffectName = 'Shadowstep';
-	ShadowstepEffect.DuplicateResponse = eDupe_Ignore;
-	ShadowstepEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
-	Template.AddTargetEffect(ShadowstepEffect);
+	// Replace Shadowstep with MovingTarget_LW
+	MovingTargetEffect = new class'X2Effect_MovingTarget_LW';
+	MovingTargetEffect.MT_DEFENSE = default.MOVING_TARGET_DEFENSE;
+	MovingTargetEffect.MT_DODGE = default.MOVING_TARGET_DODGE;
+	MovingTargetEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	Template.AddTargetEffect(MovingTargetEffect);
 
 	// Cannot be used while burning, etc.
 	Template.AddShooterEffectExclusions();

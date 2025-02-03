@@ -2453,7 +2453,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.DefaultLoadout='SpectralStunLancerM1_Loadout';
 			break;
 		case 'HostileVIPCivilian':
-			Template.Abilities.AddItem('Shadowstep');
+			Template.Abilities.AddItem('MovingTarget_LW');
 			break;
 		case 'LostTowersTurretM1':
 		case 'AdvShortTurretM3':

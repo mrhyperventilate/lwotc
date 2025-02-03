@@ -518,7 +518,7 @@ static function X2CharacterTemplate CreateTemplate_Sidewinder(name TemplateName)
 		case 'SidewinderM2':
 			CharTemplate.Abilities.AddItem('Reposition_LW');
 		case 'SidewinderM1':
-			CharTemplate.Abilities.AddItem('Shadowstep');
+			CharTemplate.Abilities.AddItem('MovingTarget_LW');
 		default:
 		break;
 	}
@@ -1693,7 +1693,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGeneric(name TemplateName)
 			LootBase.LootTableName='AdvTrooperM1_BaseLoot';
 			LootTimed.LootTableName='AdvTrooperM1_TimedLoot';
 			LootVulture.LootTableName='AdvTrooperM1_VultureLoot';
-			CharTemplate.Abilities.AddItem('Shadowstep');
+			CharTemplate.Abilities.AddItem('MovingTarget_LW');
 			CharTemplate.Abilities.AddItem('LoneWolf');
 			break;
 
@@ -1713,7 +1713,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGeneric(name TemplateName)
 			LootBase.LootTableName='AdvTrooperM3_BaseLoot';
 			LootTimed.LootTableName='AdvTrooperM3_TimedLoot';
 			LootVulture.LootTableName='AdvTrooperM3_VultureLoot';
-			CharTemplate.Abilities.AddItem('Shadowstep');
+			CharTemplate.Abilities.AddItem('MovingTarget_LW');
 			CharTemplate.Abilities.AddItem('Evasive');
 			CharTemplate.Abilities.AddItem('LowProfile');
 			CharTemplate.Abilities.AddItem('HardTarget');
