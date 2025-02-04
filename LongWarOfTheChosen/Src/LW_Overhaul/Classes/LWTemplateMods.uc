@@ -1035,6 +1035,37 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		FixCivilianPanicOnApproach(Template);
 	}
 
+	if (Template.DataName == 'CombatProtocol') {
+		for (k = Template.AbilityTargetEffects.length - 1; k >= 0; k--)
+		{
+			if (Template.AbilityTargetEffects[k].IsA('X2Effect_ApplyWeaponDamage')) {
+				Template.AbilityTargetEffects.Remove(k, 1);
+			}
+		}
+
+		// Replace default WeaponDamage effects with separate organic/robotic
+		// versions. This is how Whiplash and CapacitorDischarge work.
+		WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+		WeaponDamageEffect.bIgnoreBaseDamage = true;
+		WeaponDamageEffect.DamageTag = 'CombatProtocol';
+		UnitPropertyCondition = new class'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeOrganic = false;
+		UnitPropertyCondition.ExcludeRobotic = true;
+		UnitPropertyCondition.ExcludeFriendlyToSource = false;
+		WeaponDamageEffect.TargetConditions.AddItem(UnitPropertyCondition);
+		Template.AddTargetEffect(WeaponDamageEffect);
+
+		WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+		WeaponDamageEffect.bIgnoreBaseDamage = true;
+		WeaponDamageEffect.DamageTag = 'CombatProtocol_Robotic';
+		UnitPropertyCondition = new class'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeOrganic = true;
+		UnitPropertyCondition.ExcludeRobotic = false;
+		UnitPropertyCondition.ExcludeFriendlyToSource = false;
+		WeaponDamageEffect.TargetConditions.AddItem(UnitPropertyCondition);
+		Template.AddTargetEffect(WeaponDamageEffect);
+	}
+
 	if (Template.DataName == 'Grapple')
 	{
 		Template.AbilityCooldown.iNumTurns = default.SPIDER_GRAPPLE_COOLDOWN;
@@ -2915,19 +2946,26 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	GremlinTemplate = X2GremlinTemplate(Template);
 	if (GremlinTemplate != none)
 	{
+		if (GremlinTemplate.DataName == 'Gremlin_CV' || GremlinTemplate.DataName == 'Gremlin_MG' || GremlinTemplate.DataName == 'Gremlin_BM') {
+			GremlinTemplate.BaseDamage.Damage = 0;
+			GremlinTemplate.BaseDamage.Spread = 0;
+			GremlinTemplate.BaseDamage.PlusOne = 0;
+			GremlinTemplate.BaseDamage.Crit = 0;
+			GremlinTemplate.BaseDamage.Pierce = 0;
+			GremlinTemplate.BaseDamage.Rupture = 0;
+			GremlinTemplate.BaseDamage.Shred = 0;
+		}
 		if (GremlinTemplate.DataName == 'Gremlin_MG')
 		{
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
 			GremlinTemplate.AidProtocolBonus = 5;
-			GremlinTemplate.BaseDamage.Damage = 5;
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{
 			GremlinTemplate.RevivalChargesBonus = 2;
 			GremlinTemplate.ScanningChargesBonus = 2;
 			GremlinTemplate.AidProtocolBonus = 10;
-			GremlinTemplate.BaseDamage.Damage = 8;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{

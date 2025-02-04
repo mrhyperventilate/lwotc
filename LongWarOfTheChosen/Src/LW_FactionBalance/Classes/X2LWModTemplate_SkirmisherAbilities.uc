@@ -218,7 +218,7 @@ static function ModifyWhiplash(X2AbilityTemplate Template)
 
 	// Configure the damage for non-robotic targets.
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreArmor = true;
+	WeaponDamageEffect.bIgnoreArmor = false;
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
 	WeaponDamageEffect.DamageTag = 'Whiplash';
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
@@ -229,7 +229,7 @@ static function ModifyWhiplash(X2AbilityTemplate Template)
 
 	// Configure the damage for robotic targets (higher damage than for organics).
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	WeaponDamageEffect.bIgnoreArmor = true;
+	WeaponDamageEffect.bIgnoreArmor = false;
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
 	WeaponDamageEffect.DamageTag = 'Whiplash_Robotic';
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
