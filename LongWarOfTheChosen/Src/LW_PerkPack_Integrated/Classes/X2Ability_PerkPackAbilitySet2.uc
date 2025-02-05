@@ -104,6 +104,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(RedunSysTriggered());
 	Templates.AddItem(PurePassive('RapidRepair_LW', "img:///UILibrary_MW.UIPerk_rapid_repair"));
 	Templates.AddItem(PurePassive('HeavyRepair_LW', "img:///UILibrary_MW.UIPerk_heavyduty"));
+	Templates.AddItem(PurePassive('OverdriveCooldown'));
 	Templates.AddItem(RedundantSystems());
 	Templates.AddItem(ConcussiveStrike());
 	Templates.AddItem(Obliterator());

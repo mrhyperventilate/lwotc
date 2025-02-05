@@ -367,6 +367,7 @@ static function FixOverdrive(X2AbilityTemplate Template)
 	local X2Effect_DLC_3Overdrive OverdriveEffect;
 	local X2Effect_DLC_3Overdrive_LW NewOverdriveEffect;
 	local int i;
+	local X2AbilityCooldown_SparkOverdrive Cooldown;
 
 	for(i= Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
 	{
@@ -379,9 +380,12 @@ static function FixOverdrive(X2AbilityTemplate Template)
 		}
 	}
 
+	Cooldown = new class'X2AbilityCooldown_SparkOverdrive';
+	Cooldown.iNumTurns = Template.AbilityCooldown.iNumTurns;
+
 	NewOverdriveEffect = new class'X2Effect_DLC_3Overdrive_LW'(OverdriveEffect);
 	Template.AddTargetEffect(NewOverdriveEffect);
-
+	Template.AbilityCooldown = Cooldown;
 }
 
 static function UpdateMeleeAbilityForBloodThirst(X2AbilityTemplate Template)
