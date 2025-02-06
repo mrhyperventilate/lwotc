@@ -6,7 +6,6 @@
 class X2Ability_SkirmisherAbilitySet_LW extends X2Ability_SkirmisherAbilitySet config(LW_FactionBalance);
 
 var config int RECKONING_LW_COOLDOWN;
-var config int RECKONING_LW_SLASH_COOLDOWN;
 var config int MANUAL_OVERRIDE_COOLDOWN;
 var config int REFLEX_COOLDOWN;
 var config int SKIRMISHER_INTERRUPT_COOLDOWN;
@@ -111,12 +110,6 @@ static function X2AbilityTemplate AddSkirmisherSlash()
 	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-
-	/*
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.RECKONING_LW_SLASH_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
-	*/
 
 	// Targetted melee attack against a single target
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
