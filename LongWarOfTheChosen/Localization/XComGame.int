@@ -267,9 +267,9 @@ LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="Fire In The Hole"
 LocFlyOverText="Fire In The Hole"
-LocLongDescription="Your rockets are more accurate, and gauntlet rockets deal +2 damage."
-LocHelpText="Your rockets are more accurate, and gauntlet rockets deal +2 damage."
-LocPromotionPopupText="<Bullet/> Your rockets are more likely to hit their intended point of impact, or at least close to it.<br/><Bullet/> The maximum it can miss by is reduced by two tiles.<br/><Bullet/> Any rocket ability that is affected by Javelin Rockets will gain the bonus damage."
+LocLongDescription="Gauntlet rockets deal +2 damage and have +25% larger areas of effect."
+LocHelpText="Gauntlet rockets deal +2 damage and have +25% larger areas of effect."
+LocPromotionPopupText="Any rocket ability that is affected by Javelin Rockets will gain the bonus damage and blast radius."
 
 [ImprovedMunitions_LW X2AbilityTemplate]
 LocFriendlyName="Improved Warheads"
@@ -319,9 +319,9 @@ LocPromotionPopupText="<Bullet/> This rocket deals 1-2/2-3/3-4 damage depending 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="Javelin Rockets"
 LocFlyOverText="Javelin Rockets"
-LocLongDescription="The range of your rockets is increased by 6 tiles and you may hit targets beyond your visual range."
-LocHelpText="The range of your rockets is increased by 6 tiles and you may hit targets beyond your visual range."
-LocPromotionPopupText="<Bullet/> The range of your rockets is increased by 6 tiles and you may hit targets beyond your visual range.<br/>"
+LocLongDescription="Rocket accuracy is greatly improved, rocket range is increased by 6 tiles, and you may hit targets beyond your visual range."
+LocHelpText="Rocket accuracy is greatly improved, rocket range is increased by 6 tiles, and you may hit targets beyond your visual range."
+LocPromotionPopupText="Rocket accuracy is greatly improved, rocket range is increased by 6 tiles, and you may hit targets beyond your visual range."
 
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="Bunker Buster"

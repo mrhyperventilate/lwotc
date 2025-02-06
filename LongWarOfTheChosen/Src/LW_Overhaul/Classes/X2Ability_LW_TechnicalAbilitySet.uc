@@ -1505,6 +1505,11 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = true;
+	// Add 1.5m to radius assuming that:
+	// Gauntlet_Primary_CONVENTIONAL_RADIUS=6
+	// Gauntlet_Primary_MAG_RADIUS=6
+	// Gauntlet_Primary_BEAM_RADIUS=6
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', 1.5);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
@@ -1683,6 +1688,11 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = true;
+	// Add 1.5m to radius assuming that:
+	// Gauntlet_Primary_CONVENTIONAL_BASEDAMAGE=6
+	// Gauntlet_Primary_MAG_RADIUS=6
+	// Gauntlet_Primary_BEAM_RADIUS=6
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', 1.5);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
@@ -1811,6 +1821,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.CONCUSSION_ROCKET_RADIUS_TILES * 1.5; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -1955,6 +1966,7 @@ static function X2AbilityTemplate CreateBlasterConcussionRocketAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.CONCUSSION_ROCKET_RADIUS_TILES * 1.5; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -2136,6 +2148,7 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.BUNKER_BUSTER_RADIUS_METERS; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -2256,6 +2269,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.SHREDDER_ROCKET_RADIUS_METERS; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -2377,6 +2391,7 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.SHREDDER_ROCKET_RADIUS_METERS; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -2499,6 +2514,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.EMP_ROCKET_RADIUS_METERS; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -2635,6 +2651,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = default.EMP_ROCKET_RADIUS_METERS; // meters
+	RadiusMultiTarget.AddAbilityBonusRadius('FireInTheHole', RadiusMultiTarget.fTargetRadius * 0.25);
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
