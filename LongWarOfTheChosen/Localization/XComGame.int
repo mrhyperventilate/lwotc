@@ -258,8 +258,8 @@ LocHelpText="This unit is immune to fire damage."
 LocPromotionPopupText="<Bullet/> This unit is immune to fire damage.<br/>"
 
 [ShockAndAwe X2AbilityTemplate]
-LocFriendlyName="Shock and Awe"
-LocFlyOverText="Shock and Awe"
+LocFriendlyName="Pocket Rocket"
+LocFlyOverText="Pocket Rocket"
 LocLongDescription="You equip one additional rocket."
 LocHelpText="You equip one additional rocket."
 LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
