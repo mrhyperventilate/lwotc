@@ -351,7 +351,6 @@ static function X2AbilityTemplate AddAlphaMikeFoxtrot()
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  No visualization
-	// NOTE: Limitation of this ability to PRIMARY weapons only must be configured in ClassData.ini, otherwise will apply to pistols/swords, etc., contrary to design and loc text
 	// Ability parameter is ApplyToWeaponSlot=eInvSlot_PrimaryWeapon
 	return Template;
 }

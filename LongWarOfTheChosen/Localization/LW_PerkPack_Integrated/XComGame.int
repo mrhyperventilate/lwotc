@@ -66,17 +66,17 @@ BriefSummary="Reduces wound recovery time by 1 HP and grants immunity to acid an
 ; perk name appearing centered. Thanks to bountygiver for the suggestion.
 LocFriendlyName="Centеr Mass"
 LocFlyOverText="Centеr Mass"
-LocLongDescription="You do one additional point of base damage when using guns."
-LocHelpText="You do one additional point of base damage when using guns."
-LocPromotionPopupText="<Bullet/> This applies to your primary weapon, pistols and sawed-off shotgun."
+LocLongDescription="You do one additional point of base damage with your <Ability:BOUND_WEAPON_NAME/> and sidearms."
+LocHelpText="You do one additional point of base damage with your <Ability:BOUND_WEAPON_NAME/> and sidearms."
+LocPromotionPopupText="<Bullet/> This applies to your <Ability:BOUND_WEAPON_NAME/>, pistols and sawed-off shotgun."
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Lethal"
 LocFlyOverText="Lethal"
 ; LWOTC Needs Translation
-LocLongDescription="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
-LocHelpText="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
-LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocLongDescription="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your <Ability:BOUND_WEAPON_NAME/>."
+LocHelpText="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your <Ability:BOUND_WEAPON_NAME/>."
+LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your <Ability:BOUND_WEAPON_NAME/>."
 ; End Translation
 
 [HitandSlither X2AbilityTemplate]
@@ -90,9 +90,9 @@ LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action a
 LocFriendlyName="Hit and Run"
 LocFlyOverText="Hit and Run"
 ; LWOTC Needs Translation
-LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon. Cannot trigger on the same turn as Close Encounters. "
+LocLongDescription="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your <Ability:BOUND_WEAPON_NAME/>. Cannot trigger on the same turn as Close Encounters. "
 ; End Translation
-LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your primary weapon."
+LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked enemy with your <Ability:BOUND_WEAPON_NAME/>."
 LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.<br/><Bullet/> Bonus full actions from Serial and Death from Above will be awarded first."
 
 [CloseCombatSpecialist X2AbilityTemplate]
@@ -208,8 +208,8 @@ LocPromotionPopupText=""
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Close Encounters"
 LocFlyOverText="Close Encounters"
-LocLongDescription="Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Hit and Run."
-LocHelpText="Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
+LocLongDescription="Once per turn, gain a bonus action after taking a standard shot with your <Ability:BOUND_WEAPON_NAME/> at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Hit and Run."
+LocHelpText="Once per turn, gain a bonus action after taking a standard shot with your <Ability:BOUND_WEAPON_NAME/> at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
 LocPromotionPopupText="<Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Close Encounters cannot be used on the same turn as Run and Gun.<br/>"
 
 ; LWOTC Needs Translation
@@ -231,7 +231,7 @@ LocPromotionPopupText="<Bullet/> Makes partial cover count as full.<br/>"
 [DoubleTap X2AbilityTemplate]
 LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
-LocLongDescription="Special shot: Fire two shots with your primary weapon at the same target. Requires both actions. Second shot is at a -10 aim penalty."
+LocLongDescription="Special shot: Fire two shots with your <Ability:BOUND_WEAPON_NAME/> at the same target. Requires both actions. Second shot is at a -10 aim penalty."
 LocHelpText="Fire two shots at the same target with a to-hit penality on the second shot."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Double Tap allows you to take two shots at the same target, with the second shot at a -10 penalty to hit. It requires two actions and ends the turn.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Double Tap has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
@@ -240,9 +240,9 @@ LocPromotionPopupText="<Bullet/> Double Tap allows you to take two shots at the 
 [TraverseFire X2AbilityTemplate]
 LocFriendlyName="Traverse Fire"
 LocFlyOverText="Traverse Fire"
-LocLongDescription="After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action."
-LocHelpText="After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action."
-LocPromotionPopupText="<Bullet/> After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action.<br/>"
+LocLongDescription="After taking a standard shot with your <Ability:BOUND_WEAPON_NAME/> with your first action, you may take an additional non-movement action."
+LocHelpText="After taking a standard shot with your <Ability:BOUND_WEAPON_NAME/> with your first action, you may take an additional non-movement action."
+LocPromotionPopupText="<Bullet/> After taking a standard shot with your <Ability:BOUND_WEAPON_NAME/> with your first action, you may take an additional non-movement action.<br/>"
 
 ; LWOTC needs translation
 [WalkFire X2AbilityTemplate]
