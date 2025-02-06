@@ -37,7 +37,7 @@ BriefSummary="The implant hardens your armor against enemy fire and grants <Abil
 [AbsorptionFieldsPCS X2EquipmentTemplate]
 FriendlyName="PCS: Impact Fields"
 FriendlyNamePlural="PCS: Impact Fields"
-BriefSummary="This shield projector implant may be activated as an action to reduce incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
+BriefSummary="This shield projector implant may be activated as a free action to reduce incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
 
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="PCS: Body Shield"
@@ -790,9 +790,9 @@ LocPromotionPopupText="<Bullet/> You can trigger the Slash ability by placing th
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Impact Fields"
 LocFlyOverText="Impact Fields"
-LocLongDescription="Use an action to activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
-LocHelpText="Use an action to activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
-LocPromotionPopupText="<Bullet/> Activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns.<br/><Bullet/> <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown.<br/><Bullet/> Uses one action and doesn't automatically end your turn.<br/><Bullet/> Armor-Piercing weapons do not mitigate this effect.<br/>"
+LocLongDescription="Activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown. Free action."
+LocHelpText="Activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown. Free action."
+LocPromotionPopupText="<Bullet/> Activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns.<br/><Bullet/> <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown.<br/><Bullet/> Free action.<br/><Bullet/> Armor-Piercing weapons do not mitigate this effect.<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Body Shield"
