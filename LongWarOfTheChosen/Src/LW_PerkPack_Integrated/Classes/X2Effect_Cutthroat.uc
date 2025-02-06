@@ -8,6 +8,7 @@ class X2Effect_Cutthroat extends X2Effect_Persistent config (LW_SoldierSkills);
 
 var int BONUS_CRIT_CHANCE;
 var int BONUS_CRIT_DAMAGE;
+var int ARMOR_PIERCE;
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
@@ -79,7 +80,7 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 			SourceWeapon = AbilityState.GetSourceWeapon();
 			if (SourceWeapon != none || Source.IsRobotic())
 			{				
-				return 9999;
+				return ARMOR_PIERCE;
 			}
 		}
 	}	

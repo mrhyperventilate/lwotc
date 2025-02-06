@@ -4892,7 +4892,7 @@ LocLongDescription="Some enemies gain the Grazing Fire ability, providing an inc
 ; LWOTC Needs Translation
 DisplayName="Permanent: Cutthroat"
 ; End Translation
-SummaryText="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
+SummaryText="Stun Lancers and other enemies gain the Cutthroat ability, increasing armor piercing, critical hit chances, and critical hit damage."
 QuoteText="\"They are learning our vulnerabilities even as we learn theirs.\""
 QuoteTextAuthor="- Dr. Tygan"
 PreMissionText="Grants Stun Lancers and other enemies the Cutthroat ability."

@@ -216,6 +216,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'MAX_SLICE_FLECHE_DAMAGE':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.MAX_SLICE_FLECHE_DAMAGE);
 			return true;
+		case 'CUTTHROAT_ARMOR_PIERCE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_ARMOR_PIERCE);
+			return true;
 		case 'CUTTHROAT_BONUS_CRIT_CHANCE':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_CHANCE);
 			return true;
