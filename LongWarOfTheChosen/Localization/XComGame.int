@@ -582,11 +582,11 @@ LocPromotionPopupText="<Bullet/> Combatives grants you +<Ability:COUNTERATTACK_D
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
-LocHelpText="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
+LocLongDescription="Special shot with +<Ability:FLUSH_AIM_BONUS> cover negation but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move. Cannot target enemies that do not take cover."
+LocHelpText="Special shot with +<Ability:FLUSH_AIM_BONUS> cover negation but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move. Cannot target enemies that do not take cover."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The defense and dodge debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The defense and dodge debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.  Cannot target enemies that do not take cover."
 ; End Translation (2)
 str_FlushEffect="Flushed"
 

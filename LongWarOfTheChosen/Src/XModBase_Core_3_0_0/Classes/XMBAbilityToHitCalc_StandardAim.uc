@@ -19,6 +19,9 @@ class XMBAbilityToHitCalc_StandardAim extends X2AbilityToHitCalc_StandardAim imp
 // XModBase version
 var int MajorVersion, MinorVersion, PatchVersion;
 
+// Maximum amount of cover negation
+var int CoverNegationMod;
+
 /*
 // Copied from X2AbilityToHitCalc and modified.
 function InternalRollForAbilityHit(XComGameState_Ability kAbility, AvailableTarget kTarget, bool bIsPrimaryTarget, const out AbilityResultContext ResultContext, out EAbilityHitResult Result, out ArmorMitigationResults ArmorMitigated, out int HitChance)
@@ -806,6 +809,10 @@ function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableT
 						AngleToCoverModifier = Lerp(maxAnglePenaltyToCover, MIN_ANGLE_PENALTY, Alpha)/100.0;
 						AngleBonus = Round(CoverValue * AngleToCoverModifier);
 						AddModifier(AngleBonus, class'XLocalizedData'.default.AngleToTargetCover, m_ShotBreakdown, eHit_Success, bDebugLog);
+
+						if (CoverNegationMod > 0 && CoverValue - AngleBonus > 0) {
+							AddModifier(min(CoverNegationMod, CoverValue - AngleBonus), "Cover Negation", m_ShotBreakdown, eHit_Success, bDebugLog);
+						}
 					}
 				}
 			}

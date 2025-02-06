@@ -329,13 +329,14 @@ static function X2AbilityTemplate AddFlushAbility()
 	local X2AbilityTemplate					Template;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityCost_Ammo				AmmoCost;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local XMBAbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;
 	local X2Condition_Visibility            VisibilityCondition;
 	local X2Effect_FallBack					FallBackEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			ShooterCondition;
 	local X2Effect_PersistentStatChange		NerfEffect;
+	local XMBCondition_CoverType CoverCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Flush');
 
@@ -371,8 +372,9 @@ static function X2AbilityTemplate AddFlushAbility()
 	ShooterCondition.ExcludeConcealed = true;
 	Template.AbilityShooterConditions.AddItem(ShooterCondition);
 
-	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
-	ToHitCalc.BuiltInHitMod = default.FLUSH_AIM_BONUS;
+	// Change flat aim bonus to cover negation
+	ToHitCalc = new class'XMBAbilityToHitCalc_StandardAim';
+	ToHitCalc.CoverNegationMod = default.FLUSH_AIM_BONUS;
 	ToHitCalc.bAllowCrit = false;
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
@@ -380,6 +382,11 @@ static function X2AbilityTemplate AddFlushAbility()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 	Template.AddShooterEffectExclusions();
+
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+	CoverCondition.bRequireCanTakeCover = true;
+	Template.AbilityTargetConditions.AddItem(CoverCondition);
 
 	SuppressedCondition = new class'X2Condition_UnitEffects';
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
