@@ -1967,8 +1967,6 @@ static function X2AbilityTemplate Obliterator()
 	HitModEffect.EffectName = 'ObliteratorAim_LW';
 	Template.AddTargetEffect(HitModEffect);
 
-	Template.AdditionalAbilities.AddItem('WreckingBall');
-
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
