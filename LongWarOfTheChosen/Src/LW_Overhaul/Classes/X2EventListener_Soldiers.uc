@@ -507,10 +507,31 @@ static function EventListenerReturn OverridePromotionBlueprintTagPrefix(
 	return ELR_NoInterrupt;
 }
 
+static function bool CanPurchaseAbility(XComGameState_Unit Unit, int Rank, int Branch) {
+	local string UnitDesc;
+	local int i, crc;
+	local array<int> PurchasableBranches;
+	local array<SoldierClassAbilitySlot> AbilitySlots;
+
+	AbilitySlots = Unit.GetSoldierClassTemplate().GetAbilitySlots(Rank);
+
+	for (i = 0; i < AbilitySlots.length; i++) {
+		// Handle empty slots and duplicate perks purchased from the XCOM row
+		if (AbilitySlots[i].AbilityType.AbilityName != '' && !Unit.HasSoldierAbility(AbilitySlots[i].AbilityType.AbilityName)) {
+			PurchasableBranches.AddItem(i);
+		}
+	}
+
+	if (PurchasableBranches.Length == 0) return false;
+
+	UnitDesc = Unit.GetSoldierRankName(Rank + 1) $ " " $ Unit.GetFirstName() $ " " $ Unit.GetLastName() $ " " $ Unit.ObjectID $ " " $ Unit.GetSoldierClassTemplateName() $ " " $ Rank $ ":" $ PurchasableBranches.Length;
+	crc = class'Helpers_LW'.static.Crc16(UnitDesc);
+
+	return PurchasableBranches[crc % PurchasableBranches.Length] == Branch;
+}
+
 // Prevents access to multiple class abilities at a single rank unless
-// the 'AllowSameRankAbilities' second wave option is enabled. Also
-// unlocks XCOM row and pistol row abilities at *all* ranks as soon as
-// the Training Center has been built.
+// the 'AllowSameRankAbilities' second wave option is enabled.
 static function EventListenerReturn OverrideCanPurchaseAbility(
 	Object EventData,
 	Object EventSource,
@@ -535,52 +556,52 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	Branch = Tuple.Data[2].i;
 	ClassAbilityRankCount = Tuple.Data[11].i;
 
-	// Don't allow purchase of other class abilities at same rank as an already
-	// picked one (unless second wave option enabled)
-	if (!`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank, ClassAbilityRankCount) && Branch < ClassAbilityRankCount)
-	{
-		Tuple.Data[13].b = false; // CanPurchaseAbility
-		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank; // LocReasonLocked
-
-		if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
-
-   		if (Branch < ClassAbilityRankCount) //row 0, row 1
-   		{
-    		Tuple.Data[13].b = false;                   //Can't buy it ...
-    		Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
-    	}
-	}
-
-	// All non-class abilities should be available for purchase as soon as the
-	// training center has been built.
-	if (Branch >= ClassAbilityRankCount)
-	{
-		if (`XCOMHQ.HasFacilityByName('RecoveryCenter'))
-		{
-			if (Tuple.Data[12].b)
-			{
+	// Unlock all non-class abilities once the training center is built
+	if (Branch >= ClassAbilityRankCount) {
+		if (`XCOMHQ.HasFacilityByName('RecoveryCenter')) {
+			if (Tuple.Data[12].b) {
 				Tuple.Data[13].b = true;
-			}
-			else
-			{
+			} else {
 				Tuple.Data[13].b = false;
-				Tuple.Data[14].i = 3;   // Reason: Not enough AP
+				Tuple.Data[14].i = 3; // Reason: Not enough AP
 			}
-		}
-		else
-		{
+		} else {
 			Tuple.Data[13].b = false;
-			Tuple.Data[14].i = 2;   // Reason: No Training Center
+			Tuple.Data[14].i = 2; // Reason: No Training Center
 		}
+
+		return ELR_NoInterrupt;
 	}
 
-	if (UnitState.GetSoldierClassTemplateName() != 'PsiOperative')  { return ELR_NoInterrupt; }
+	if (Rank >= UnitState.GetSoldierRank()) {
+		Tuple.Data[13].b = false;
+		return ELR_NoInterrupt;
+	}
 
-   	if (Branch< ClassAbilityRankCount) //row 0, row 1
-   	{
-    	Tuple.Data[13].b = false;                   //Can't buy it ...
-    	Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab;  //.. because its a psi-op perk from the lab
-    }
+	// Class abilities at or below the unit's current rank handled from here
+
+	if (UnitState.GetSoldierClassTemplateName() == 'PsiOperative') {
+		Tuple.Data[13].b = false;                                 // Can't buy it ...
+		Tuple.Data[15].s = default.ReasonPsiOperativePerkFromLab; // ... because its a psi-op perk from the lab
+		return ELR_NoInterrupt;
+	}
+
+	if (`SecondWaveEnabled('AllowSameRankAbilities')) {
+		// No restrictions on skill purchasing if the player wants easy mode
+		return ELR_NoInterrupt;
+	}
+
+	if (UnitState.HasPurchasedPerkAtRank(Rank, ClassAbilityRankCount)) {
+		Tuple.Data[13].b = false;
+		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank;
+		return ELR_NoInterrupt;
+	}
+
+	if (!CanPurchaseAbility(UnitState, Rank, Branch)) {
+		Tuple.Data[13].b = false;
+		Tuple.Data[15].s = "Unavailable for this soldier";
+		return ELR_NoInterrupt;
+	}
 
 	return ELR_NoInterrupt;
 }

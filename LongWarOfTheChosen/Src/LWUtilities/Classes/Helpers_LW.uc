@@ -1210,6 +1210,20 @@ static function bool GeoscapeReadyForUpdate()
 		StrategyMap.Movie.Pres.ScreenStack.GetCurrentScreen() == StrategyMap;
 }
 
+// https://stackoverflow.com/a/79201264/76288
+static function int Crc16(coerce string text) {
+	local int i, a, crc;
+
+	crc = 0;
+
+	for (i = 0; i < len(text); i++) {
+		a = (crc>>8) ^ asc(mid(text, i, 1));
+		crc = ((a<<2) ^ (a<<1) ^ a ^ (crc<<8)) & 0xffff;
+	}
+
+	return crc;
+}
+
 defaultproperties
 {
 	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"

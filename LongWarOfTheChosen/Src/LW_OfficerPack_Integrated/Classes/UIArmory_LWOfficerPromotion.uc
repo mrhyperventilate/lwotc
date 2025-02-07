@@ -96,6 +96,8 @@ simulated function PopulateData()
 	local X2AbilityTemplateManager AbilityTemplateManager;
 	local XComGameState_Unit Unit;
 	local XComGameState_Unit_LWOfficer OfficerState;
+	local string UnitDesc;
+	local int NextRank, crc;
 	
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	Unit = GetUnit();
@@ -156,6 +158,13 @@ simulated function PopulateData()
 	Item.SetPromote(false);
 	Item.SetDisabled(false);
 	Item.RealizeVisuals();
+
+	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(Unit);
+	NextRank = OfficerState.GetOfficerRank() + 1;
+	UnitDesc = class'LWOfficerUtilities'.static.GetLWOfficerRankName(NextRank) $ " " $ Unit.GetFirstName() $ " " $ Unit.GetLastName() $ " " $ Unit.ObjectID $ " " $ NextRank;
+	crc = class'Helpers_LW'.static.Crc16(UnitDesc);
+	// class'Helpers'.static.OutputMsg("Crc16(\"" $ UnitDesc $ "\")=" $ crc $ ", crc&0x2=" $ (crc & 0x2));
+
 		
 	// Show the rest of the officer rows; these will have the officer's selectable abilities.
 	for (i = 1; i <= MaxRank; ++i)
@@ -173,7 +182,6 @@ simulated function PopulateData()
 		AbilityTemplate1 = AbilityTemplateManager.FindAbilityTemplate(class'LWOfficerUtilities'.static.GetAbilityName(Item.Rank, 0));
 		AbilityTemplate2 = AbilityTemplateManager.FindAbilityTemplate(class'LWOfficerUtilities'.static.GetAbilityName(Item.Rank, 1));
 		
-		OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(Unit);
 		if (OfficerState != none)
 		{
 			// KDM : Determines if the officer already has either of these abilities.
@@ -226,6 +234,17 @@ simulated function PopulateData()
 			}
 			else
 			{
+				AbilityName2 = class'UIUtilities_Text'.static.GetColoredText(m_strAbilityLockedTitle, eUIState_Disabled);
+				AbilityIcon2 = class'UIUtilities_Image'.const.UnknownAbilityIcon;
+			}
+		}
+
+		if (i == NextRank) {
+			// Least significant bit doesn't vary enough with CRC16, so check penultimate bit
+			if ((crc & 0x2) == 0) {
+				AbilityName1 = class'UIUtilities_Text'.static.GetColoredText(m_strAbilityLockedTitle, eUIState_Disabled);
+				AbilityIcon1 = class'UIUtilities_Image'.const.UnknownAbilityIcon;
+			} else {
 				AbilityName2 = class'UIUtilities_Text'.static.GetColoredText(m_strAbilityLockedTitle, eUIState_Disabled);
 				AbilityIcon2 = class'UIUtilities_Image'.const.UnknownAbilityIcon;
 			}
