@@ -40,13 +40,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		MakeRendNotWorkWhenBurning(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
-		Template.AdditionalAbilities.AddItem('SingleRendFocus'); //move this thing to Rend so Rend has the thing that gives focus after using Rend instead of Volt because why was it there originally???
 		break;
 	case 'Rend_LW':
 		MakeRendNotWorkWhenBurningButLetDisoriented(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
-		Template.AdditionalAbilities.AddItem('SingleRendFocus'); //move this thing to Rend so Rend has the thing that gives focus after using Rend instead of Volt because why was it there originally???
 		break;
 	case 'Volt':
 		ModifyVoltTargeting(Template);
