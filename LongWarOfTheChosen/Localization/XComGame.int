@@ -1729,7 +1729,6 @@ RightAbilityTreeTitle="Pyrotech"
 +AbilityTreeTitles[1]="Striker"
 +AbilityTreeTitles[2]="Pyrotech"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
 +RandomNickNames="Angel"
@@ -1812,7 +1811,6 @@ RightAbilityTreeTitle="Hacker"
 +AbilityTreeTitles[1]="Watcher"
 +AbilityTreeTitles[2]="Hacker"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
 +RandomNickNames="Angel"
@@ -1896,7 +1894,6 @@ RightAbilityTreeTitle="Support"
 +AbilityTreeTitles[1]="Trooper"
 +AbilityTreeTitles[2]="Support"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
 +RandomNickNames="All Day"
@@ -1991,7 +1988,6 @@ RightAbilityTreeTitle="Oppressor"
 +AbilityTreeTitles[1]="Sentry"
 +AbilityTreeTitles[2]="Oppressor"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 +RandomNickNames="Backfire"
 +RandomNickNames="Baja"
@@ -2041,7 +2037,6 @@ RightAbilityTreeTitle="Defender"
 +AbilityTreeTitles[1]="Pointman"
 +AbilityTreeTitles[2]="Defender"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 +RandomNickNames="Bronco"
 +RandomNickNames="Buck"
@@ -2092,7 +2087,6 @@ RightAbilityTreeTitle="Marksman"
 +AbilityTreeTitles[1]="Spotter"
 +AbilityTreeTitles[2]="Marksman"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
 +RandomNickNames="Apex"
@@ -2179,7 +2173,6 @@ RightAbilityTreeTitle="Crasher"
 +AbilityTreeTitles[1]="Zapper"
 +AbilityTreeTitles[2]="Crasher"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
 +RandomNickNames="Bandit"
@@ -2259,7 +2252,6 @@ RightAbilityTreeTitle="Kenshi"
 +AbilityTreeTitles[1]="Saboteur"
 +AbilityTreeTitles[2]="Kenshi"
 +AbilityTreeTitles[3]="XCOM"
-+AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
 +RandomNickNames="Clutch"
@@ -5523,14 +5515,12 @@ TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage
 
 ; LWOTC Needs Translation
 [Skirmisher X2SoldierClassTemplate]
-AbilityTreeTitles[4]="Pistols"
 
 [Reaper X2SoldierClassTemplate]
 AbilityTreeTitles[0]="Marksman"
 AbilityTreeTitles[1]="Partisan"
 AbilityTreeTitles[2]="Prepper"
 AbilityTreeTitles[3]="XCOM"
-AbilityTreeTitles[4]="Pistols"
 ; End Translation
 
 ; LWOTC Needs Translation
