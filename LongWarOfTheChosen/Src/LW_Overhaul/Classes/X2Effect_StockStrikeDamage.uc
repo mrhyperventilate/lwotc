@@ -35,7 +35,7 @@ simulated function bool ModifyDamageValue(out WeaponDamageValue DamageValue, Dam
 	
 	DamageValue.Damage = TargetUnit.GetMaxStat(eStat_HP) * Stockstrike_MaxHpDamage;
     
-	bIgnoreArmor = true;
+	bIgnoreArmor = false;
 	EffectDamagevalue = DamageValue;
 
 	return bIsImmune;
