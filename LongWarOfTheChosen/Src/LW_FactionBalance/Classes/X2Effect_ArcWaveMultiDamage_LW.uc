@@ -1,35 +1,41 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_ArcWaveMultiDamage_LW
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Updates the Arcwave effect so that its damage is dependent on weapon tier instead of focus
+//  PURPOSE: Updates the Arcwave effect so that its damage depends on focus AND weapon tier
 //---------------------------------------------------------------------------------------
 class X2Effect_ArcWaveMultiDamage_LW extends X2Effect_ArcWaveMultiDamage;
 
-var int T1Damage;
-var int T2Damage;
-var int T3Damage;
+var float T1DamagePerFocus;
+var float T2DamagePerFocus;
+var float T3DamagePerFocus;
 function WeaponDamageValue GetBonusEffectDamageValue(XComGameState_Ability AbilityState, XComGameState_Unit SourceUnit, XComGameState_Item SourceWeapon, StateObjectReference TargetRef)
 {
 	local WeaponDamageValue Damage;
+	local int FocusLevel;
+	local float DamagePerFocus;
 
 	if (TargetRef.ObjectID > 0)
 	{
 		SourceWeapon = AbilityState.GetSourceWeapon();
+		FocusLevel = SourceUnit.GetTemplarFocusLevel();
 
 		switch(SourceWeapon.GetMyTemplateName())
 		{
 			case 'ShardGauntlet_CV':
-				Damage.Damage = T1Damage;
+				DamagePerFocus = T1DamagePerFocus;
 				break;
 			case 'ShardGauntlet_MG':
-				Damage.Damage = T2Damage;
+				DamagePerFocus = T2DamagePerFocus;
 				break;
 			case 'ShardGauntlet_BM':
-				Damage.Damage = T3Damage;
+				DamagePerFocus = T3DamagePerFocus;
 				break;
 			default:
-				Damage.Damage = T1Damage;
+				DamagePerFocus = T1DamagePerFocus;
 		}
+
+		Damage.Damage = max(1, round(DamagePerFocus * FocusLevel));
 	}
 	return Damage;
 }
+

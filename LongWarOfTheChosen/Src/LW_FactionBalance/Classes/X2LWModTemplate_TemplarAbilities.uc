@@ -15,9 +15,9 @@ var config int VOLT_TILE_RADIUS;
 var config int VOLT_DANGER_ZONE_BONUS_RADIUS;
 var config int VOLT_TERRORIZE_BONUS;
 
-var config int ARCWAVE_T1_DAMAGE;
-var config int ARCWAVE_T2_DAMAGE;
-var config int ARCWAVE_T3_DAMAGE;
+var config float ARCWAVE_T1_DAMAGE_PER_FOCUS;
+var config float ARCWAVE_T2_DAMAGE_PER_FOCUS;
+var config float ARCWAVE_T3_DAMAGE_PER_FOCUS;
 
 var config int GHOST_COOLDOWN;
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
@@ -363,9 +363,10 @@ static function UpdateArcWave(X2AbilityTemplate Template)
 
 	Effect = new class'X2Effect_ArcWaveMultiDamage_LW';
 
-	Effect.T1Damage = default.ARCWAVE_T1_DAMAGE;
-	Effect.T2Damage = default.ARCWAVE_T2_DAMAGE;
-	Effect.T3Damage = default.ARCWAVE_T3_DAMAGE;
+	Effect.T1DamagePerFocus = default.ARCWAVE_T1_DAMAGE_PER_FOCUS;
+	Effect.T2DamagePerFocus = default.ARCWAVE_T2_DAMAGE_PER_FOCUS;
+	Effect.T3DamagePerFocus = default.ARCWAVE_T3_DAMAGE_PER_FOCUS;
+	Effect.bIgnoreArmor = false;
 
 	Template.AddMultiTargetEffect(Effect);
 

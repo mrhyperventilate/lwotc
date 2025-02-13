@@ -891,6 +891,7 @@ static function X2AbilityTemplate ArcWave_LW()
 {
 	local X2AbilityTemplate					Template;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2Effect_ModifyTemplarFocus FocusEffect;
 
 	Template = Rend('ArcWave_LW');
 	Template.OverrideAbilities.AddItem('Rend_LW');
@@ -929,6 +930,11 @@ static function X2AbilityTemplate ArcWave_LW()
 	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
 	Template.AddMultiTargetEffect(new class'X2Effect_ArcWaveMultiDamage_LW');
+
+	FocusEffect = new class'X2Effect_ModifyTemplarFocus_MrH';
+	FocusEffect.bApplyOnHit = true;
+	FocusEffect.bApplyOnMiss = false;
+	Template.AddShooterEffect(FocusEffect);
 	
 	return Template;
 }
