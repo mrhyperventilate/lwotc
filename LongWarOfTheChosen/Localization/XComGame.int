@@ -7979,8 +7979,8 @@ LocPromotionPopupText="<Bullet/> The bonus doesn't apply against melee attacks.<
 
 [GrappleExpert_LW X2AbilityTemplate]
 LocFriendlyName="Grapple Expert"
-LocLongDescription="Justice, Whiplash, and Wrath gain +15 aim."
-LocHelpText="Justice, Whiplash, and Wrath gain +15 aim."
+LocLongDescription="Justice, Whiplash, and Wrath gain +15 aim. Max grapple distance increases by 2 tiles."
+LocHelpText="Justice, Whiplash, and Wrath gain +15 aim. Max grapple distance increases by 2 tiles."
 LocFlyOverText="Grapple Expert"
 
 ;Marauder
