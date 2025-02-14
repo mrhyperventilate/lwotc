@@ -624,7 +624,6 @@ static function X2AbilityTemplate AddKnifeEncountersExtendedRange()
 static function X2AbilityTemplate ImpersonalEdge()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_PersistentStatChange			StatChangeEffect;
 	local X2AbilityTrigger_EventListener		EventListenerTrigger;
 	local X2Effect_ImpersonalEdge	CooldownReductionEffect;
 
@@ -646,14 +645,6 @@ static function X2AbilityTemplate ImpersonalEdge()
 	EventListenerTrigger.ListenerData.Filter = eFilter_None;
 	EventListenerTrigger.ListenerData.EventFn = ImpersonalEdgeListener;
 	Template.AbilityTriggers.AddItem(EventListenerTrigger);
-
-	StatChangeEffect = new class'X2Effect_PersistentStatChange';
-	StatChangeEffect.AddPersistentStatChange(eStat_Offense, default.IMPERSONAL_EDGE_AIM);	
-	StatChangeEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnEnd);
-	StatChangeEffect.DuplicateResponse = eDupe_Allow;
-	StatChangeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
-	StatChangeEffect.EffectName = 'ImpersonalEdgeBuff';
-	Template.AddTargetEffect(StatChangeEffect);
 
 	CooldownReductionEffect = new class'X2Effect_ImpersonalEdge';
 	Template.AddTargetEffect(CooldownReductionEffect);

@@ -176,16 +176,16 @@ LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwi
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
-LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
-LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns.<br/>"
+LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown to zero."
+LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown to zero."
+LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown to zero.<br/>"
 
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
-LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
-LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns.<br/>"
+LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown to zero."
+LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown to zero."
+LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown to zero.<br/>"
 ; End Translation (2)
 
 [BlueScreenKnives X2AbilityTemplate]

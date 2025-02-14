@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_ImpersonalEdge.uc
 //  AUTHOR:  Grobobobo
-//  PURPOSE: On activation reduces shadow's cooldown by 1
+//  PURPOSE: On activation reduces shadow's cooldown to 0
 //           
 //---------------------------------------------------------------------------------------
 class X2Effect_ImpersonalEdge extends X2Effect;
@@ -21,7 +21,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		if (AbilityState != none && AbilityState.iCooldown > 0 && AbilityState.GetMyTemplateName() == 'Shadow')
 		{
 			AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(AbilityState.Class, AbilityState.ObjectID));
-			AbilityState.iCooldown--;
+			AbilityState.iCooldown = 0;
 		}
 	}
 }
