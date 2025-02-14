@@ -27,7 +27,6 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddThrowKnife('MusashiThrowKnifeSecondary_LW'));
 	Templates.AddItem(AddKnifeJuggler());
-	Templates.AddItem(AddKnifeJugglerTrigger());
 	Templates.AddItem(AddHailstorm());
 	Templates.AddItem(AddThrowingKnifeFaceoff());
 	Templates.AddItem(AddKnifeEncounters());
@@ -437,8 +436,6 @@ static function X2AbilityTemplate AddKnifeJuggler()
 	DamageEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(DamageEffect);
 
-	Template.AdditionalAbilities.AddItem('KnifeJugglerTrigger_LW');
-
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
@@ -561,35 +558,6 @@ static function AddRendTheMarkedEffect(X2AbilityTemplate Template)
 
 	Template.AddTargetEffect(ToHitModifier);
 	Template.AddMultiTargetEffect(ToHitModifier);
-}
-
-static function X2AbilityTemplate AddKnifeJugglerTrigger()
-{
-	local X2AbilityTemplate 			Template;
-	local X2Effect_AddAmmo 				AmmoEffect;
-	local X2Condition_UnitProperty		UnitPropertyCondition;
-	local X2Condition_PrimaryWeapon PrimaryWeaponCondition;
-
-	AmmoEffect = new class'X2Effect_AddAmmo';
-	AmmoEffect.ExtraAmmoAmount = 1;
-
-	
-	Template = SelfTargetTrigger('KnifeJugglerTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
-	    
-
-	PrimaryWeaponCondition = new class'X2Condition_PrimaryWeapon';
-	PrimaryWeaponCondition.RequirePrimary = true;
-	AddTriggerTargetCondition(Template, PrimaryWeaponCondition);
-
-	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeDead = false;
-	UnitPropertyCondition.ExcludeFriendlyToSource = true;
-	UnitPropertyCondition.ExcludeHostileToSource = false;
-	AddTriggerTargetCondition(Template, UnitPropertyCondition);
-
-	Template.bShowActivation = true;
-	
-	return Template;
 }
 
 static function X2AbilityTemplate AddKnifeEncounters()
