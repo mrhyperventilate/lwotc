@@ -2349,11 +2349,11 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		case 'SpectreM1':
 			Template.Abilities.RemoveItem('LightningReflexes');
-			Template.Abilities.AddItem('LightningReflexes_LW');
+			Template.Abilities.AddItem('Shadowstep');
 			break;
 		case 'SpectreM2':
 			Template.Abilities.RemoveItem('LightningReflexes');
-			Template.Abilities.AddItem('LightningReflexes_LW');
+			Template.Abilities.AddItem('Shadowstep');
 			Template.Abilities.AddItem('LowProfile');
 			break;
 
