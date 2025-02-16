@@ -1093,6 +1093,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	local array<name>                       SkipExclusions;
 	local X2AbilityCost_Ammo	AmmoCost;
 	local X2Condition_AbilityProperty ParamedicCondition;
+	local X2AbilityTarget_MovingMelee MeleeTarget;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ParaMedikitHeal');
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
@@ -1112,8 +1113,10 @@ static function X2AbilityTemplate ParaMedikitHeal()
 
 	Template.bUseAmmoAsChargesForHUD = true;
 
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = 1;
 	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.AbilityTargetStyle = MeleeTarget;
 	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -1183,6 +1186,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	local X2AbilityCost_Ammo	AmmoCost;
 	local X2Condition_AbilityProperty ParamedicCondition;
 	local X2Effect_RemoveEffects RemoveEffects;
+	local X2AbilityTarget_MovingMelee MeleeTarget;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ParaMedikitStabilize');
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
@@ -1201,8 +1205,10 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 
 	Template.bUseAmmoAsChargesForHUD = true;
 
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = 1;
 	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.AbilityTargetStyle = MeleeTarget;
 	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
