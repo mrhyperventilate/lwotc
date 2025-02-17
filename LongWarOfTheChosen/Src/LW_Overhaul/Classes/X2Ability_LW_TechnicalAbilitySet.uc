@@ -2213,7 +2213,7 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 static function X2AbilityTemplate CreateShredderRocketAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2AbilityCharges					Charges;
+	local X2AbilityCharges_BonusCharges Charges;
 	local X2AbilityCost_Charges				ChargeCost;
 	local X2AbilityCost_HeavyWeaponActionPoints        ActionPointCost;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
@@ -2253,8 +2253,10 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Charges = new class'X2AbilityCharges';
+	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusItem = 'ExtraRocket';
+	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
 
 	ChargeCost = new class'X2AbilityCost_Charges';
@@ -2335,7 +2337,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2AbilityCharges					Charges;
+	local X2AbilityCharges_BonusCharges Charges;
 	local X2AbilityCost_Charges				ChargeCost;
 	local X2AbilityCost_HeavyWeaponActionPoints        ActionPointCost;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
@@ -2375,8 +2377,10 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 	ActionPointCost = new class'X2AbilityCost_HeavyWeaponActionPoints';
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Charges = new class'X2AbilityCharges';
+	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusItem = 'ExtraRocket';
+	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
 
 	ChargeCost = new class'X2AbilityCost_Charges';
