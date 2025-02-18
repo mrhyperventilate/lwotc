@@ -1,3 +1,0 @@
-[X2Ability_ThrowingKnifeAbilitySet]
-RendTheMarkedEffectName="Zerreiße die Markierten"
-RendTheMarkedEffectDesc="Immer wenn du ein Ziel mit einem Wurfmesser verwundest, erhält jede Einheit bis zum Ende der Runde einen kumulativen Bonus von +<Ability: REND_THE_MARKED_CRIT/> auf die kritische Trefferchance gegen das Ziel."
