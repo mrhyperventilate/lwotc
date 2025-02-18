@@ -158,6 +158,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.Additem(ScrapMetalTrigger());
 	Templates.Additem(Brutality());
 	Templates.Additem(Ruthless());
+	Templates.Additem(RuthlessBrutality());
 
 	Templates.AddItem(LeadTheTarget_LW());
 	Templates.AddItem(LeadTheTargetShot_LW());
@@ -578,6 +579,32 @@ static function X2AbilityTemplate Ruthless()
 	
 	return Template;
 }
+
+// Provides Ruthless and Brutality
+static function X2AbilityTemplate RuthlessBrutality()
+{
+	local X2AbilityTemplate Template;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RuthlessBrutality_LW');
+	Template.IconImage = "img:///'BstarsPerkPack_Icons.UIPerk_Brutality'";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bCrossClassEligible = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.AdditionalAbilities.AddItem('Ruthless_LW');
+	Template.AdditionalAbilities.AddItem('Brutality_LW');
+
+	return Template;
+}
+
 // Lead The Target - Active: Queue a shot on a target that will be taken on the enemy's turn with an increased chance to hit. Does not count as reaction fire.
 static function X2AbilityTemplate LeadTheTarget_LW()
 {

@@ -6620,6 +6620,13 @@ LocHelpText="Killing a panicked or disoriented enemy with your sawed-off shotgun
 LocFlyOverText="Ruthless"
 LocPromotionPopupText="<Bullet/> By cleverly combining the effects of Brutality and Ruthless, you can kill multiple enemies per turn with your sawed-off shotgun.<br/><Bullet/> There is no limit to the number of Ruthless activations per turn.<br/>"
 
+[RuthlessBrutality_LW X2AbilityTemplate]
+LocFriendlyName="Ruthless Brutality"
+LocLongDescription="Gain the Ruthless and Brutality sawed-off shotgun abilities."
+LocHelpText="Gain the Ruthless and Brutality sawed-off shotgun abilities."
+LocFlyOverText="Ruthless"
+LocPromotionPopupText="<Bullet/> Ruthless: Killing a panicked or disoriented enemy with your sawed-off shotgun refunds one action point.<br/><Bullet/>Brutality: Killing organic enemies with your sawed-off shotgun have a <Ability:BRUTALITY_PANIC_CHANCE/>% chance to panic other organic enemies within <Ability:BRUTALITY_TILE_RADIUS/> tiles of the target.<br/><Bullet/> By cleverly combining the effects of Ruthless and Brutality, you can kill multiple enemies per turn with your sawed-off shotgun.<br/><Bullet/> There is no limit to the number of Ruthless activations per turn.<br/>"
+
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "Zone of Control"
 LocHelpText = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility."
