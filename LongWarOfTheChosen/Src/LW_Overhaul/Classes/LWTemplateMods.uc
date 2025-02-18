@@ -987,7 +987,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_UnitEffects           UnitEffects;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2AbilityCharges_RevivalProtocol  RPCharges;
-	local X2Condition_UnitInventory         InventoryCondition2;
+	local X2Condition_UnitInventory         InventoryCondition, InventoryCondition2;
 	local X2Condition_UnitEffects           SuppressedCondition, UnitEffectsCondition, NotHaywiredCondition;
 	local int                               k;
 	local X2AbilityCost_Ammo                AmmoCost;
@@ -1064,12 +1064,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'HailofBullets')
 	{
-		/*
 		InventoryCondition = new class'X2Condition_UnitInventory';
 		InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 		InventoryCondition.ExcludeWeaponCategory = 'shotgun';
 		Template.AbilityShooterConditions.AddItem(InventoryCondition);
-		*/
+
 		InventoryCondition2 = new class'X2Condition_UnitInventory';
 		InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
 		InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
@@ -1087,6 +1086,16 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'Demolition')
 	{
+		InventoryCondition = new class'X2Condition_UnitInventory';
+		InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
+		InventoryCondition.ExcludeWeaponCategory = 'shotgun';
+		Template.AbilityShooterConditions.AddItem(InventoryCondition);
+
+		InventoryCondition2 = new class'X2Condition_UnitInventory';
+		InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
+		InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
+		Template.AbilityShooterConditions.AddItem(InventoryCondition2);
+
 		for (k = 0; k < Template.AbilityCosts.length; k++)
 		{
 			AmmoCost = X2AbilityCost_Ammo(Template.AbilityCosts[k]);

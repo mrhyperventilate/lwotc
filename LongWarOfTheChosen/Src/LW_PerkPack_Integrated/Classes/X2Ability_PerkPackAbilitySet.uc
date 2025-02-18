@@ -1233,7 +1233,7 @@ static function X2AbilityTemplate AddWalkFireAbility()
 	local X2AbilityCooldown					Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
 	local X2Condition_Visibility            VisibilityCondition;
-	local X2Condition_UnitInventory			InventoryCondition2;
+	local X2Condition_UnitInventory			InventoryCondition, InventoryCondition2;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'WalkFire');
@@ -1251,12 +1251,11 @@ static function X2AbilityTemplate AddWalkFireAbility()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
-	/*
 	InventoryCondition = new class'X2Condition_UnitInventory';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition.ExcludeWeaponCategory = 'shotgun';
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
-	*/
+
 	InventoryCondition2 = new class'X2Condition_UnitInventory';
 	InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
@@ -1555,7 +1554,7 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	local X2AbilityCooldown					Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
 	//local array<name>                       SkipExclusions;
-	local X2Condition_UnitInventory			InventoryCondition2;
+	local X2Condition_UnitInventory			InventoryCondition, InventoryCondition2;
 	local X2Effect_Shredder					WeaponDamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CyclicFire');
@@ -1570,13 +1569,12 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 	Template.bAllowAmmoEffects = true;
 	Template.bAllowBonusWeaponEffects = true;
-/*
+
 	InventoryCondition = new class'X2Condition_UnitInventory';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition.ExcludeWeaponCategory = 'shotgun';
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
 
-	*/
 	InventoryCondition2 = new class'X2Condition_UnitInventory';
 	InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
