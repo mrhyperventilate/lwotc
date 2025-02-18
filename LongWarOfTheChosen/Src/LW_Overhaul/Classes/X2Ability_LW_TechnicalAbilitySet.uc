@@ -221,7 +221,7 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = default.FLAMETHROWER_CHARGES;
-	//Charges.BonusAbility = 'HighPressure';
+	Charges.BonusAbility = 'HighPressure';
 	Charges.BonusItem = 'HighPressureTanks';
 	Charges.BonusChargesCount =  default.FLAMETHROWER_HIGH_PRESSURE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -394,7 +394,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = default.ROUST_CHARGES;
-	//Charges.BonusAbility = 'HighPressure';
+	Charges.BonusAbility = 'HighPressure';
 	Charges.BonusItem = 'HighPressureTanks';
 	Charges.BonusChargesCount =  default.ROUST_HIGH_PRESSURE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -1804,6 +1804,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusAbility = 'ShockAndAwe';
 	Charges.BonusItem = 'ExtraRocket';
 	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -1949,6 +1950,7 @@ static function X2AbilityTemplate CreateBlasterConcussionRocketAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusAbility = 'ShockAndAwe';
 	Charges.BonusItem = 'ExtraRocket';
 	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -2255,6 +2257,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusAbility = 'ShockAndAwe';
 	Charges.BonusItem = 'ExtraRocket';
 	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
@@ -2379,6 +2382,7 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 
 	Charges = new class'X2AbilityCharges_BonusCharges';
 	Charges.InitialCharges = 1;
+	Charges.BonusAbility = 'ShockAndAwe';
 	Charges.BonusItem = 'ExtraRocket';
 	Charges.BonusChargesCount =  default.ROCKET_SHOCKANDAWE_CHARGES;
 	Template.AbilityCharges = Charges;
