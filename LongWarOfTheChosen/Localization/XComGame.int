@@ -124,7 +124,7 @@ RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 ; LWOTC Needs Translation
 [HunkerDown X2AbilityTemplate]
 LocFriendlyName="Hunker Down"
-LocHelpText="Increase Defense by <Ability:HUNKERDEFENSEBONUS/>, and Dodge by <Ability:HUNKERDODGEBONUS/>. Only works in cover. Does not put out burning."
+LocHelpText="Increase Defense by <Ability:HUNKERDEFENSEBONUS/>, and Dodge by <Ability:HUNKERDODGEBONUS/>. Does not put out burning."
 LocFlyOverText="Hunker Down"
 ; End translation
 

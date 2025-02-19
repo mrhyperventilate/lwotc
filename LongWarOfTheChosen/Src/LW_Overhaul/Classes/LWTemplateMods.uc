@@ -1785,6 +1785,18 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		HunkerDownEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 		Template.AddTargetEffect(HunkerDownEffect);
 
+		for (k = Template.AbilityShooterConditions.Length - 1; k >= 0; k--) {
+			if (Template.AbilityShooterConditions[k].IsA('X2Condition_UnitProperty')) {
+				Template.AbilityShooterConditions.remove(k, 1);
+			}
+		}
+
+		UnitPropertyCondition = new class'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeDead = true;
+		UnitPropertyCondition.ExcludeFriendlyToSource = false;
+		UnitPropertyCondition.ExcludeNoCover = false; // Allow hunker down without cover to get dodge bonus
+		Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
 		// Aim effect moved to OPTC_SharpshooterAim
 	}
 
