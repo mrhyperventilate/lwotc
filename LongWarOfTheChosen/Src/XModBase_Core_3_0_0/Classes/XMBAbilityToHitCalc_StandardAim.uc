@@ -784,6 +784,11 @@ function GetAdditionalHitModifiers_CH(XComGameState_Ability kAbility, AvailableT
 							}
 						}
 
+						if (bReactionFire && UnitState.HasAbilityFromAnySource('CoveringFire')) {
+							if (CoverNegationMod <= 0) CoverNegationMod = 0;
+							CoverNegationMod += CoverValue*2/3;
+						}
+
 						UnitState.GetKeystoneVisibilityLocation(UnitTileLocation);
 						TargetState.GetKeystoneVisibilityLocation(TargetTileLocation);
 						NextTileOverCoverType = NextTileOverCoverInSameDirection(UnitTileLocation, TargetTileLocation);
