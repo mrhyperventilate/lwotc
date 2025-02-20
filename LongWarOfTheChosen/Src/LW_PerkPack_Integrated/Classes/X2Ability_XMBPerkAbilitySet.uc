@@ -906,6 +906,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	Template.BuildVisualizationFn = ProtocolSingleTarget_BuildVisualization;
 	//Template.BuildVisualizationFn = class'X2Ability_SpecialistAbilitySet'.static.GremlinSingleTarget_BuildVisualization;
 	Template.PostActivationEvents.AddItem('ItemRecalled');
+	Template.CustomSelfFireAnim = 'NO_CombatProtocol';
 	return Template;
 }
 

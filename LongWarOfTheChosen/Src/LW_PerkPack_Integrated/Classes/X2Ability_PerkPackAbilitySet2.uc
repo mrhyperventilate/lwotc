@@ -860,8 +860,7 @@ static function X2AbilityTemplate AddAirdrop()
 	Template.bSkipPerkActivationActions = true;
 	Template.PostActivationEvents.AddItem('ItemRecalled');
 	
-	Template.CustomSelfFireAnim = 'NO_CombatProtocol';
-	Template.CinescriptCameraType = "Specialist_CombatProtocol";
+	Template.CinescriptCameraType = "";
 
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
 
@@ -2039,7 +2038,7 @@ static function X2AbilityTemplate Neutralize()
 	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.SendGremlinToLocation_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_SparkAbilitySet'.static.Bombard_BuildVisualization;
 
-	Template.CinescriptCameraType = "Spark_Bombard";
+	Template.CinescriptCameraType = "";
 
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
