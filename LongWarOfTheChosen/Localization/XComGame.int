@@ -7080,8 +7080,8 @@ LocFlyOverText="Big Game Hunter"
 [BonusBombard_LW X2AbilityTemplate]
 LocFriendlyName="Extended Reserves"
 LocLongDescription="Gain an additional use of equipped Heavy Weapons and Bombard."
-LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
-LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. The extra use of Bombard is only granted if the Bombard ability is taken."
+LocHelpText="Gain an additional use of equipped Heavy Weapons and Bombard. If the Bombard ability is not available, another Heavy Weapons charge is added instead."
+LocPromotionPopupText="Gain an additional use of equipped Heavy Weapons and Bombard. If the Bombard ability is not available, another Heavy Weapons charge is added instead."
 
 [BloodBath_LW X2AbilityTemplate]
 LocFriendlyName="Blood Bath"

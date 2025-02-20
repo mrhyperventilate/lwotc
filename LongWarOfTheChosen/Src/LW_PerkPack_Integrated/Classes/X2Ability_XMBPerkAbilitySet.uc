@@ -4121,18 +4121,12 @@ static function X2AbilityTemplate HeroSlayer_LW()
 static function X2AbilityTemplate CreateBonusChargesAbility()
 {
 	local X2AbilityTemplate Template;
-	local XMBEffect_AddItemCharges Effect;
 
 	Template = Passive('BonusBombard_LW', "img:///UILibrary_XPerkIconPack.UIPerk_rocket_bullet_x2", true);
 
-	Effect = new class'XMBEffect_AddItemCharges';
-	Effect.ApplyToSlots.AddItem(eInvSlot_HeavyWeapon);
-	Effect.ApplyToSlots.AddItem(eInvSlot_ExtraBackpack);	
-	Effect.PerItemBonus = 1;
-
 	// Bonus Bombard charges is handled in OPTC of Bombard.
 
-	AddSecondaryEffect(Template, Effect);
+	AddSecondaryEffect(Template, new class'XMBEffect_AddBonusBombardCharges');
 
 	return Template;
 }
