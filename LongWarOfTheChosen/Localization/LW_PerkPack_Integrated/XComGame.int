@@ -579,7 +579,7 @@ LocFriendlyName="Field Surgeon"
 LocFlyOverText="Field Surgeon"
 LocLongDescription="Reduce wound recovery times for most soldiers."
 LocHelpText="Reduce wound recovery times for most soldiers."
-LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by %20 (min 1HP).<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect robotic units or soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [Flashbanger X2AbilityTemplate]
 LocFriendlyName="Flashbanger"

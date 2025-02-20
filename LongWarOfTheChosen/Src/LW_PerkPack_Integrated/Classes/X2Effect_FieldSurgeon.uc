@@ -37,6 +37,7 @@ function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit 
 	local bool						bApplyFieldSurgeon;
 	local UnitValue					StatusValue;
 	local int						StatusIntValue;
+	local int HealAmount;
 
 	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(OrigUnitState.ObjectID));
 	if (UnitState == none)
@@ -52,6 +53,7 @@ function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit 
 
 	`PPTRACE("Field Surgeon: Source Unit Valid.");
 
+	if (UnitState.GetMyTemplateName() == 'SparkSoldier' || UnitState.HasAbilityFromAnySource('Overdrive')) { return; }
 	if(UnitState == none) { return; }
 	if(UnitState.IsDead()) { return; }
 	// This check does nothing, as it is seemingly always false at this point. 
@@ -86,7 +88,9 @@ function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit 
 	if(bApplyFieldSurgeon)
 	{
 		`PPTRACE("Field Surgeon : Pre update LowestHP=" $ UnitState.LowestHP);
-		UnitState.LowestHP += 1;
+		HealAmount = min(round(UnitState.GetMaxStat(eStat_HP) * 0.2), UnitState.HighestHP - UnitState.LowestHP);
+		if (HealAmount <= 0) HealAmount = 1;
+		UnitState.LowestHP += HealAmount;
 		`PPTRACE("Field Surgeon : Post update LowestHP=" $ UnitState.LowestHP);
 
 		// Armor HP may have already been removed, apparently healing the unit since we have not yet
@@ -94,7 +98,7 @@ function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit 
 		// armor HP). Current HP is used in the EndTacticalHealthMod adjustment, so we should increase it
 		// if it's less than the max, but don't exceed the max HP.
 		if (UnitState.GetCurrentStat(eStat_HP) < UnitState.GetMaxStat(eStat_HP))
-			UnitState.ModifyCurrentStat(eStat_HP, 1);
+			UnitState.ModifyCurrentStat(eStat_HP, min(HealAmount, UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP)));
 		UnitState.SetUnitFloatValue(default.FieldSurgeonAppliedUnitValue, AppliedFSValue.fValue + 1, eCleanup_BeginTactical);
 	}
 }
