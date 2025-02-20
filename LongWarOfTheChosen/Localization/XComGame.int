@@ -7853,8 +7853,8 @@ LocPromotionPopupText="<Bullet/> Repair will restore <Ability:Repair_HealHP/> he
 LocFriendlyName="Channeling Field"
 LocLongDescription="Every time you are targeted, part of the energy is channeled to your <Ability:WeaponName>. This energy is unleashed with your next Standard Shot."
 LocHelpText="Channel energy to your <Ability:WeaponName> when targeted, and unleash it with your next Standard Shot."
-LocFlyOverText="Energy Channeled: +1"
-LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/>"
+LocFlyOverText="Energy Channeled: +2"
+LocPromotionPopupText="<Bullet/> Energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 2.<br/>"
 
 [Sacrifice X2AbilityTemplate]
 LocFriendlyName="Sacrifice"

@@ -325,7 +325,6 @@ static function ReworkAbsorptionField(X2AbilityTemplate Template)
 {
 	local X2Effect_DLC_3AbsorptionField_LW         FieldEffect;
 
-	// Make this only work on hit.
 	Template.AbilityTargetEffects.length = 0;
 
 	FieldEffect = new class 'X2Effect_DLC_3AbsorptionField_LW';

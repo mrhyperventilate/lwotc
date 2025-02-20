@@ -11,7 +11,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 	local XComGameState NewGameState;
 	local XComGameState_Effect_DLC_3AbsorptionField NewEffectState;
 	local XComGameStateHistory History;
-	//local XComGameState_Item SourceWeapon;
+	local XComGameState_Item SourceWeapon;
 	local bool bRedirected;
 	local int i;
 
@@ -50,7 +50,7 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 				{
 					NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Absorption Field - Energy Absorbed");
 					NewEffectState = XComGameState_Effect_DLC_3AbsorptionField(NewGameState.ModifyStateObject(Class, ObjectID));
-					NewEffectState.EnergyAbsorbed++;
+					NewEffectState.EnergyAbsorbed += 2; // Double channeling rate
 					//  add new unit and ability state for visualization
 					UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
 					//  get the absorption field ability, not the attacking ability
@@ -63,7 +63,6 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 				}
 			}
 		}
-		/*
 		//  check for shooting
 		else if (AbilityContext.InputContext.SourceObject.ObjectID == ApplyEffectParameters.TargetStateObjectRef.ObjectID)
 		{
@@ -83,7 +82,6 @@ function EventListenerReturn AbilityActivatedListener(Object EventData, Object E
 				}
 			}
 		}
-		*/
 	}
 
 	return ELR_NoInterrupt;
