@@ -1842,13 +1842,16 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-	if (Template.DataName == 'Evac')
+	if (Template.DataName == 'Evac' || Template.DataName == 'EvacAll' || Template.DataName == 'RM_PhantomEvac')
 	{
 		// Only mastered mind-controlled enemies can evac. Insert this one first, as it will return
 		// 'AA_AbilityUnavailable' if they can't use the ability, so it will be hidden on any MC'd
 		// alien instead of being shown but disabled when they aren't in an evac zone due to that
 		// condition returning a different code.
 		Template.AbilityShooterConditions.InsertItem(0, new class'X2Condition_MasteredEnemy');
+
+		// Disable evac if unit is adjacent to an enemy or evac zone is occupied by any enemies
+		Template.AbilityShooterConditions.AddItem(new class'X2Condition_EvacZoneIsClear');
 	}
 
 	/*
