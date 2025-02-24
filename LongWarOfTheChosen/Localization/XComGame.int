@@ -189,7 +189,7 @@ LocFriendlyName="Phosphorus"
 LocFlyOverText="Phosphorus"
 LocLongDescription="Your flamethrower's base damage can now ignore fire immunities, and shred armor.""
 LocHelpText="Your flamethrower's base damage can now ignore fire immunities, and shred armor."
-LocPromotionPopupText="<Bullet/> While you can now damage fire immune enemies, they still cannot be set on fire.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
+LocPromotionPopupText="<Bullet/> While you can now damage fire immune enemies, they still cannot be set on fire.<br/><Bullet/> Flamethrower attacks shred +1 armor per gauntlet tier.</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="Incinerator"
@@ -290,7 +290,7 @@ LocFriendlyName="Shredder Rocket"
 LocFlyOverText="Shredder Rocket"
 LocLongDescription="Fire a special rocket which shreds and ruptures targets in a small area."
 LocHelpText="Fire a special rocket which shreds and ruptures targets in a small area.<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> This rocket shreds 3/4/5 points of armor and applies 1/2/3 point of Rupture depending on gauntlet tier.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
+LocPromotionPopupText="<Bullet/> This rocket shreds 2/3/4 points of armor and applies 1/2/3 point of Rupture depending on gauntlet tier.<br/><Bullet/> The rocket has the same area of effect as a Frag Grenade."
 
 [EMPRocket_LW X2AbilityTemplate]
 LocFriendlyName="EMP Rocket"
@@ -892,8 +892,8 @@ LocHelpText="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and 
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Shredder Rounds"
 LocFlyOverText="Shredder Rounds"
-LocLongDescription="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
-LocHelpText="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
+LocLongDescription="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> and pierce +<Ability:SHREDDER_ROUNDS_PIERCE> armor."
+LocHelpText="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> and pierce +<Ability:SHREDDER_ROUNDS_PIERCE> armor."
 
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Flechette Rounds"

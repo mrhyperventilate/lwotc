@@ -1,5 +1,6 @@
 class X2Item_LWUtilityItems extends X2Item config(LW_Overhaul);
 
+var config int SHREDDER_ROUNDS_PIERCE;
 var config int SHREDDER_ROUNDS_SHRED;
 
 var config int STILETTO_DMGMOD;
@@ -214,6 +215,7 @@ static function X2AmmoTemplate CreateFalconRounds()
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
 
+	DamageValue.Pierce = default.SHREDDER_ROUNDS_PIERCE;
 	DamageValue.Shred = default.SHREDDER_ROUNDS_SHRED;
 	Template.AddAmmoDamageModifier(none, DamageValue);
 

@@ -4371,6 +4371,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'EVACDELAY_LW':
 			OutString = string(class'X2Ability_PlaceDelayedEvacZone'.static.GetEvacDelay());
 			return true;
+		case 'SHREDDER_ROUNDS_PIERCE':
+			OutString = string(class'X2Item_LWUtilityItems'.default.SHREDDER_ROUNDS_PIERCE);
+			return true;
 		case 'SHREDDER_ROUNDS_SHRED':
 			OutString = string(class'X2Item_LWUtilityItems'.default.SHREDDER_ROUNDS_SHRED);
 			return true;
