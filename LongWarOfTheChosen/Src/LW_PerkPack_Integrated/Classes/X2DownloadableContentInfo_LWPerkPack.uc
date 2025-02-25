@@ -351,8 +351,8 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'TARGET_FOCUS_AIM_BONUS':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGET_FOCUS_AIM_BONUS);
 			return true;
-		case 'TARGET_FOCUS_PEN_BONUS':
-			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGET_FOCUS_PIERCE);
+		case 'TARGET_FOCUS_CRIT_BONUS':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGET_FOCUS_CRIT_BONUS);
 			return true;
 		case 'AIM_ASSIST_AIM_BONUS':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.AIM_ASSIST_AIM_BONUS);

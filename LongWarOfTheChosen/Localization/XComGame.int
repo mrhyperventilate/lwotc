@@ -6687,10 +6687,10 @@ LocFlyOverText = "Lead The Target"
 
 [TargetFocus_LW X2AbilityTemplate]
 LocFriendlyName = "Target Focus"
-LocHelpText = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
-LocLongDescription = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
+LocHelpText = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and +<Ability:TARGET_FOCUS_CRIT_BONUS/> crit against unflankable enemies."
+LocLongDescription = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and +<Ability:TARGET_FOCUS_CRIT_BONUS/> crit against unflankable enemies."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Berserkers.<br/>"
+LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and +<Ability:TARGET_FOCUS_CRIT_BONUS/> crit against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Berserkers.<br/>"
 ; End Translation (2)
 
 [AimAssist_LW X2AbilityTemplate]

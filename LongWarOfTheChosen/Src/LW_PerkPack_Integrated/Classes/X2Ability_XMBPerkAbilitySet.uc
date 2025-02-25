@@ -74,8 +74,8 @@ var config float ZONE_CONTROL_RADIUS_SQ;
 var config int AIM_ASSIST_AIM_BONUS;
 var config int AIM_ASSIST_CRIT_BONUS;
 
-var config int TARGET_FOCUS_PIERCE;
 var config int TARGET_FOCUS_AIM_BONUS;
+var config int TARGET_FOCUS_CRIT_BONUS;
 
 var config int SS_PIERCE;
 
@@ -2174,9 +2174,9 @@ static function X2AbilityTemplate TargetFocus()
 	// Create an armor piercing bonus
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
 	ShootingEffect.EffectName = 'TargetFocus_LW_Bonuses';
-	ShootingEffect.AddArmorPiercingModifier(default.TARGET_FOCUS_PIERCE);
 
 	ShootingEffect.AddToHitModifier(default.TARGET_FOCUS_AIM_BONUS, eHit_Success);
+	ShootingEffect.AddToHitModifier(default.TARGET_FOCUS_CRIT_BONUS, eHit_Crit);
 
 	// Only with the associated weapon
 	
