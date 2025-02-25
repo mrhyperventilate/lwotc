@@ -2548,10 +2548,10 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Effect_Suppression              SuppressionEffect;
 	local X2Effect_PersistentStatChange		StatChangeEffect;
 	local X2Condition_UnitInventoryExpanded         UnitInventoryCondition;
-	//local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
 	local X2Condition_AbilityProperty AbilityCondition;
+	local X2Condition_WeaponCategory WeaponCategoryCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -2632,10 +2632,15 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	Template.AdditionalAbilities.AddItem('LockdownBonuses');
 	Template.AdditionalAbilities.AddItem('MayhemBonuses');
 
+	WeaponCategoryCondition = new class'X2Condition_WeaponCategory';
+	WeaponCategoryCondition.WeaponCats.AddItem('cannon');
+	WeaponCategoryCondition.WeaponCats.AddItem('sparkrifle');
+
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
 	StatChangeEffect.AddPersistentStatChange(eStat_Offense, -15, modOP_Addition);
 	StatChangeEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
 	StatChangeEffect.duplicateResponse = eDupe_Refresh;
+	StatChangeEffect.TargetConditions.AddItem(WeaponCategoryCondition);
 	//StatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	Template.AddTargetEffect(StatChangeEffect);
 
