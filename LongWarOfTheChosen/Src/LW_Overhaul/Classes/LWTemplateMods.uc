@@ -2711,10 +2711,15 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.WeaponCat == 'pistol' && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT)
 			WeaponTemplate.Abilities.AddItem('PistolStandardShot');
 
+		if (WeaponTemplate.WeaponCat == 'rifle' || WeaponTemplate.WeaponCat == 'smg' || WeaponTemplate.WeaponCat == 'sparkrifle' || WeaponTemplate.WeaponCat == 'bullpup')
+		{
+			WeaponTemplate.Abilities.AddItem('Suppression_LW');
+		}
 		// substitute cannon range table
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
+			WeaponTemplate.Abilities.AddItem('Suppression_LW');
 		}
 		if (WeaponTemplate.WeaponCat == 'vektor_rifle')
 		{
