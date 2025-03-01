@@ -354,7 +354,7 @@ static function X2AbilityTemplate AddClaymoreDisorient()
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeDead = true;
-	UnitPropertyCondition.ExcludeFriendlyToSource = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.ExcludeHostileToSource = false;
 	UnitPropertyCondition.ExcludeOrganic = false;
 	UnitPropertyCondition.ExcludeRobotic = true;

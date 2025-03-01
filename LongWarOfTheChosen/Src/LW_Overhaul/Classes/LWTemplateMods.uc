@@ -867,6 +867,10 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 					}
 				}
 			}
+
+			// AoE friendly fire
+			GrenadeTemplate.bFriendlyFire = true;
+			GrenadeTemplate.bFriendlyFireWarning = true;
 			break;
 		case 'AdvGrenadierFlashbangGrenade':
 			for (k = 0; k < GrenadeTemplate.ThrownGrenadeEffects.Length; k++)
@@ -892,6 +896,11 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			GrenadeTemplate.bAllowVolatileMix = false;
+			// fall through
+		case 'HunterConcussionGrenade':
+		case 'MountainMistGrenade':
+			// AoE friendly fire
+			GrenadeTemplate.bFriendlyFire = true;
 			break;
 		case 'EMPGrenade':
 		case 'EMPGrenadeMk2':
@@ -2043,6 +2052,19 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				WeaponDamageEffect.bBypassShields = true;
 			}
 		}
+	}
+
+	if (Template.DataName == 'SectopodLightningField') {
+		for (k = Template.AbilityMultiTargetConditions.Length - 1; k >= 0; k--) {
+			if (Template.AbilityMultiTargetConditions[k].IsA('X2Condition_UnitProperty')) {
+				Template.AbilityMultiTargetConditions.Remove(k, 1);
+			}
+		}
+		// AoE friendly fire
+		UnitPropertyCondition = new class'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeFriendlyToSource = false; // Friendly fire
+		UnitPropertyCondition.ExcludeDead = true;
+		Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
 	}
 }
 

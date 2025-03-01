@@ -269,7 +269,7 @@ static function X2Effect_PersistentStatChange CreateBluescreenBombsHackReduction
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = true;
-	UnitCondition.ExcludeFriendlyToSource = true;
+	UnitCondition.ExcludeFriendlyToSource = false;
 
 	BluescreenCondition = new class'X2Condition_AbilityProperty';
 	BluescreenCondition.OwnerHasSoldierAbilities.AddItem(default.BlueScreenBombsAbilityName);
@@ -291,7 +291,7 @@ static function X2Effect_PersistentStatChange CreateBluescreenBombsDisorientEffe
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = true;
-	UnitCondition.ExcludeFriendlyToSource = true;
+	UnitCondition.ExcludeFriendlyToSource = false;
 
 	BluescreenCondition = new class'X2Condition_AbilityProperty';
 	BluescreenCondition.OwnerHasSoldierAbilities.AddItem(default.BlueScreenBombsAbilityName);

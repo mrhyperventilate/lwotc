@@ -704,8 +704,8 @@ static function X2DataTemplate CreateTemplate_AdvGrenadier_Flashbang()
 	Template.iRange = default.ADVGRENADIER_FLASHBANGGRENADE_RANGE;
 	Template.iRadius = default.ADVGRENADIER_FLASHBANGGRENADE_RADIUS;
 	
-	Template.bFriendlyFire = false;
-	Template.bFriendlyFireWarning = false;
+	Template.bFriendlyFire = true;
+	Template.bFriendlyFireWarning = true;
 	Template.Abilities.AddItem('ThrowGrenade');
 
 	Template.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
@@ -1130,7 +1130,7 @@ static function X2DataTemplate CreateTemplate_AdvElite_WPN(name TemplateName)
 	Template.iRange = default.ADVGRENADIER_FLASHBANGGRENADE_RANGE;
 	Template.iRadius = default.ADVGRENADIER_FLASHBANGGRENADE_RADIUS;
 	
-	Template.bFriendlyFire = false;
+	Template.bFriendlyFire = true;
 	Template.bFriendlyFireWarning = false;
 	Template.Abilities.AddItem('ThrowGrenade');
 

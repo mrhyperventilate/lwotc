@@ -2669,7 +2669,7 @@ static function AddEffectsToGrenades()
 	local X2Condition_UnitProperty		EnemyCondition;
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';

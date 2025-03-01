@@ -1302,7 +1302,7 @@ static function X2Effect_ImmediateMultiTargetAbilityActivation CreateNapalmXPani
 	UnitCondition.ExcludeAlive = false;
 	UnitCondition.ExcludeDead = true;
 	UnitCondition.FailOnNonUnits = true;
-	UnitCondition.ExcludeFriendlyToSource = true;
+	UnitCondition.ExcludeFriendlyToSource = false;
 
 	NapalmXCondition = new class'X2Condition_AbilityProperty';
 	NapalmXCondition.OwnerHasSoldierAbilities.AddItem('NapalmX');
@@ -1334,7 +1334,7 @@ static function X2DataTemplate CreateNapalmXPanicEffectAbility()
 	//
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeDead = true;
-	UnitPropertyCondition.ExcludeFriendlyToSource = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.ExcludeRobotic = true;
 	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
@@ -1546,7 +1546,7 @@ static function X2AbilityTemplate LWRocketLauncherAbility()
 	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -1684,7 +1684,7 @@ static function X2AbilityTemplate LWBlasterLauncherAbility()
 	Template.AddMultiTargetEffect(StunnedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -1877,7 +1877,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	Template.AddMultiTargetEffect(DisorientedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -2030,7 +2030,7 @@ static function X2AbilityTemplate CreateBlasterConcussionRocketAbility()
 	}
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -2199,7 +2199,7 @@ static function X2AbilityTemplate CreateBunkerBusterAbility()
 	Template.AddMultiTargetEffect(StunnedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -2323,7 +2323,7 @@ static function X2AbilityTemplate CreateShredderRocketAbility()
 	Template.AddMultiTargetEffect(StunnedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -2448,7 +2448,7 @@ static function X2AbilityTemplate CreateBlasterShredderRocketAbility()
 	Template.AddMultiTargetEffect(StunnedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -2585,7 +2585,7 @@ static function X2AbilityTemplate CreateEMPRocketAbility()
 	Template.AddMultiTargetEffect(StunnedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';
@@ -2722,7 +2722,7 @@ static function X2AbilityTemplate CreateBlasterEMPRocketAbility()
 	Template.AddMultiTargetEffect(StunnedEffect);
 
 	EnemyCondition = new class'X2Condition_UnitProperty';
-	EnemyCondition.ExcludeFriendlyToSource = true;
+	EnemyCondition.ExcludeFriendlyToSource = false;
 	EnemyCondition.ExcludeHostileToSource = false;
 
 	ShellShockEffect = new class'X2Effect_PersistentStatChange';

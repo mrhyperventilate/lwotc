@@ -38,8 +38,8 @@ static function X2DataTemplate CreateStingGrenade()
 	Template.iRange = class'X2Item_DefaultGrenades'.default.FLASHBANGGRENADE_RANGE;
 	Template.iRadius = class'X2Item_DefaultGrenades'.default.FLASHBANGGRENADE_RADIUS;
 	
-	Template.bFriendlyFire = false;
-	Template.bFriendlyFireWarning = false;
+	Template.bFriendlyFire = true;
+	Template.bFriendlyFireWarning = true;
 	Template.Abilities.AddItem('ThrowGrenade');
 
 	Template.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false));
