@@ -26,7 +26,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	if (NewGameState != none)
 	{
 		// Must be attack with Primary Weapon
-		if (AbilityState.SourceWeapon == Attacker.GetItemInSlot(eInvSlot_PrimaryWeapon).GetReference() &&
+		if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef &&
 				AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 		{
 			`XEVENTMGR.TriggerEvent(default.ApexPredator_LW_TriggeredName, XComGameState_Unit(TargetDamageable), Attacker, NewGameState);
