@@ -20,9 +20,9 @@ LocPromotionPopupText="<Bullet/> Adds <Ability:DemolitionistExtraChargeCount/> e
 
 [CripplingStrike X2AbilityTemplate]
 LocFriendlyName="Crippling Strike"
-LocLongDescription="Throw a knife that causes the target to be maimed for 1 turn (zero mobility)."
-LocHelpText="Throw a knife that causes the target to be maimed for 1 turn (zero mobility)."
-LocPromotionPopupText="<Bullet/> Throws a throwing knife, without breaking Shadow.<br/><Bullet/> The maimed status reduces the target's mobility to 0, making it immobile.<br>"
+LocLongDescription="Throw a knife that causes the target to be maimed for 1 turn (20% mobility)."
+LocHelpText="Throw a knife that causes the target to be maimed for 1 turn (20% mobility)."
+LocPromotionPopupText="<Bullet/> Throws a throwing knife, without breaking Shadow.<br/><Bullet/> The maimed status reduces the target's mobility by 80%.<br>"
 ; End Translation
 
 ; LWOTC Needs Translation
