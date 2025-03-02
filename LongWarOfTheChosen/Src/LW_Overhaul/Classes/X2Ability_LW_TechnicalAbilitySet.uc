@@ -307,6 +307,7 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	Template.AddMultiTargetEffect(BurningEffect);
 
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
+	Template.AddMultiTargetEffect(CreateBurnoutDebuffAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
 	Template.bCheckCollision = true;
@@ -466,6 +467,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 	Template.AddMultiTargetEffect(BurningEffect);
 
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
+	Template.AddMultiTargetEffect(CreateBurnoutDebuffAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
 	FallBackEffect = new class'X2Effect_FallBack';
@@ -708,6 +710,7 @@ static function X2AbilityTemplate CreateFirestormActivation()
 	Template.AddMultiTargetEffect(BurningEffect);
 
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
+	Template.AddMultiTargetEffect(CreateBurnoutDebuffAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
 	
@@ -850,6 +853,7 @@ static function X2AbilityTemplate CreateFirestorm2()
 	Template.AddMultiTargetEffect(BurningEffect);
 
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
+	Template.AddMultiTargetEffect(CreateBurnoutDebuffAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
@@ -974,6 +978,31 @@ static function X2Effect_ApplyAltWeaponDamage CreateFlamethrowerDamageAbility()
 	WeaponDamageEffect.TargetConditions.AddItem(Condition_UnitProperty);
 
 	return WeaponDamageEffect;
+}
+
+static function X2Effect_PersistentStatChange CreateBurnoutDebuffAbility()
+{
+	local X2Effect_PersistentStatChange BurnoutDebuff;
+	local X2Condition_AbilityProperty AbilityCondition;
+	local X2Condition_UnitProperty Condition_UnitProperty;
+
+	BurnoutDebuff = new class'X2Effect_PersistentStatChange';
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('Burnout');
+	BurnoutDebuff.TargetConditions.AddItem(AbilityCondition);
+
+	// Add aim and crit debuff to targets
+	BurnoutDebuff.AddPersistentStatChange(eStat_Offense, -20, modop_Addition);
+	BurnoutDebuff.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
+	BurnoutDebuff.SetDisplayInfo(ePerkBuff_Penalty, "Greasy Goggles", "This unit has reduced aim.", "img:///UILibrary_LWOTC.LW_AbilityIgnition", true);
+	BurnoutDebuff.bDisplayInSpecialDamageMessageUI = true;
+
+	Condition_UnitProperty = new class'X2Condition_UnitProperty';
+	Condition_UnitProperty.ExcludeFriendlyToSource = false;
+	BurnoutDebuff.TargetConditions.AddItem(Condition_UnitProperty);
+
+	return BurnoutDebuff;
 }
 
 static function X2AbilityTemplate CreateBurnoutAbility()

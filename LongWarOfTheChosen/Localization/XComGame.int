@@ -209,16 +209,16 @@ LocPromotionPopupText="<Bullet/> Has a <Ability:ROUST_DIRECT_APPLY_CHANCE>% chan
 [Burnout X2AbilityTemplate]
 LocFriendlyName="Burnout"
 LocFlyOverText="Burnout"
-LocLongDescription="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
-LocHelpText="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
-LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +<Ability:SMOKEGRENADE_HITMOD_LW> defensive bonus to anyone within.<br/><Bullet/> Area of effect radius of smoke cloud is <Ability:BURNOUT_RADIUS_LW> tiles.<br/>"
+LocLongDescription="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus. The dirty smoke produced by the flamethrower also applies a -20 aim and -20 crit chance penalty for 1 turn to all units hit by the flamethrower."
+LocHelpText="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus. The dirty smoke produced by the flamethrower also applies a -20 aim and -20 crit chance penalty for 1 turn to all units hit by the flamethrower."
+LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +<Ability:SMOKEGRENADE_HITMOD_LW> defensive bonus to anyone within.<br/><Bullet/> Area of effect radius of smoke cloud is <Ability:BURNOUT_RADIUS_LW> tiles.<br/><Bullet/> All units hit by the flamethrower (regardless of immunity) get a -20 aim and -20 crit chance penalty for 1 turn."
 
 [BurnoutPassive X2AbilityTemplate]
 LocFriendlyName="Burnout"
 LocFlyOverText="Burnout"
-LocLongDescription="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
-LocHelpText="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
-LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +<Ability:SMOKEGRENADE_HITMOD_LW> defensive bonus to anyone within.<br/>"
+LocLongDescription="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus. The dirty smoke produced by the flamethrower also applies a -20 aim and -20 crit chance penalty for 1 turn to all units hit by the flamethrower."
+LocHelpText="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus. The dirty smoke produced by the flamethrower also applies a -20 aim and -20 crit chance penalty for 1 turn to all units hit by the flamethrower."
+LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +<Ability:SMOKEGRENADE_HITMOD_LW> defensive bonus to anyone within.<br/><Bullet/> Area of effect radius of smoke cloud is <Ability:BURNOUT_RADIUS_LW> tiles.<br/><Bullet/> All units hit by the flamethrower (regardless of immunity) get a -20 aim and -20 crit chance penalty for 1 turn."
 ; End Translation (2)
 
 [HighPressure X2AbilityTemplate]
