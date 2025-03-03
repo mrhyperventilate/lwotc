@@ -298,20 +298,20 @@ LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: 
 
 ; LWOTC Needs Translation (2)
 [SlugShot X2AbilityTemplate]
-LocFriendlyName="Slug Shot"
-LocFlyOverText="Slug Shot"
+LocFriendlyName="Sabot Shot"
+LocFlyOverText="Sabot Shot"
 ; LWOTC needs Translation (4)
 LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces <Ability:SLUG_SHOT_PIERCE/> armor and has no range penalties and +<Ability:SLUG_SHOT_ACC_BONUS> extra accuracy. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Armor-piercing special shotgun shot with no range penalties."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce <Ability:SLUG_SHOT_PIERCE/> armor point(s).<br/><Bullet/> Slug shot has a <Ability:SelfCooldown_LW/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce <Ability:SLUG_SHOT_PIERCE/> armor point(s).<br/><Bullet/> Sabot Shot has a <Ability:SelfCooldown_LW/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 
 
 [SlugShotRangeEffect X2AbilityTemplate]
-LocFriendlyName="Slug Shot"
-LocFlyOverText="Slug Shot"
+LocFriendlyName="Sabot Shot"
+LocFlyOverText="Sabot Shot"
 LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties and +<Ability:SLUG_SHOT_ACC_BONUS> extra accuracy. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> Slug Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> Sabot Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 ; End Translation (4)
 
 [Commissar X2AbilityTemplate]
