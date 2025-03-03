@@ -7270,3 +7270,28 @@ exec function Ted_CheckWeaponDamageValues(name ItemName)
 
 	}
 }
+
+exec function MrH_SelectRandomVoice()
+{
+	local UIArmory armory;
+	local XComGameState_Unit unit;
+	local XGCharacterGenerator characterGenerator;
+	local name oldVoiceName;
+
+	armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+	if (armory == none) {
+		class'Helpers'.static.OutputMsg("Only works in armory");
+		return;
+	}
+
+	unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(armory.GetUnitRef().ObjectID));
+	if (unit == none) {
+		class'Helpers'.static.OutputMsg("No unit selected in armory");
+		return;
+	}
+
+	characterGenerator = `XCOMGAME.Spawn(class'XGCharacterGenerator');
+	oldVoiceName = unit.kAppearance.nmVoice;
+	unit.kAppearance.nmVoice = characterGenerator.GetVoiceFromCountryAndGender(unit.GetCountry(), unit.kAppearance.iGender);
+	class'Helpers'.static.OutputMsg("Voice changed: " $ oldVoiceName $ " -> " $ unit.kAppearance.nmVoice);
+}
