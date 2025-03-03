@@ -103,7 +103,9 @@ static function UpdateBaseGameThrowGrenade()
 {
 	local X2AbilityTemplateManager			AbilityTemplateManager;
 	local X2AbilityTemplate					ThrowGrenadeAbilityTemplate, LaunchGrenadeAbilityTemplate, ProximityMineAbilityTemplate;
-	//local AbilityGrantedBonusRadius			BonusRadius;
+	local XMBEffect_DoNotConsumeAllPoints CostEffect;
+	local XMBCondition_WeaponName Condition;
+	local name ItemName;
 
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	ThrowGrenadeAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('ThrowGrenade');
@@ -118,6 +120,21 @@ static function UpdateBaseGameThrowGrenade()
 	X2AbilityMultiTarget_Radius(ProximityMineAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
 	
 	`PPDEBUG ("Updated Grenades to respect VM radius increase");
+
+	// Reduce the action opportunity cost of smoke grenades by making them non-turn-ending
+
+	CostEffect = new class'XMBEffect_DoNotConsumeAllPoints';
+	CostEffect.AbilityNames.AddItem('ThrowGrenade');
+	CostEffect.AbilityNames.AddItem('LaunchGrenade');
+	Condition = new class'XMBCondition_WeaponName';
+	foreach class'LW_PerkPack_Integrated.X2Ability_PerkPackAbilitySet2'.default.SMOKE_GRENADES_FOR_DENSE_SMOKE(ItemName) {
+		Condition.IncludeWeaponNames.AddItem(ItemName);
+	}
+	Condition.bCheckAmmo = true;
+	CostEffect.AbilityTargetConditions.AddItem(Condition);
+
+	ThrowGrenadeAbilityTemplate.AddShooterEffect(CostEffect);
+	LaunchGrenadeAbilityTemplate.AddShooterEffect(CostEffect);
 }
 
 static function UpdateBaseGameOverwatchShot()

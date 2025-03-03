@@ -997,6 +997,7 @@ static final function EventListenerReturn OnOverrideAbilityIconColor(Object Even
 			}
 			break;
 		case 'Battlescanner':
+		case 'MimicBeaconThrow':
 			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
 			{
 				IsTurnEnding = false;
