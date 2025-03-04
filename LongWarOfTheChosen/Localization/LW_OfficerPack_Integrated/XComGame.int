@@ -52,11 +52,11 @@ LocPromotionPopupText="<Bullet/> Soldiers within Command Range of the Officer re
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
 LocFriendlyName="Focus Fire"
-LocLongDescription="Spend an action to pinpoint a target and grant your squad cumulative Aim bonuses and <ABILITY:FOCUS_FIRE_ARMORPIERCING/> Armor Piercing on attacks against that target for the rest of the turn."
-LocHelpText="Pinpoint a target so your squad gains Aim and Armor Piercing bonuses against it."
+LocLongDescription="Spend an action to pinpoint a target and grant your squad cumulative aim and anti-dodge bonuses on attacks against that target for the rest of the turn."
+LocHelpText="Pinpoint a target so your squad gains Aim and anti-dodge bonuses against it."
 LocFlyOverText="Focus Fire"
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Spend an action to pinpoint a target and grant your squad cumulative aim bonuses and <ABILITY:FOCUS_FIRE_ARMORPIERCING/> armor piercing on attacks against that target for the rest of the turn.<br/><Bullet/> Each successive direct weapon attack against the target in the same turn grants an additional +<ABILITY:FOCUS_FIRE_AIM_BONUS/> aim bonus.<br/><Bullet/> Focus Fire has a <ABILITY:FOCUS_FIRE_COOLDOWN/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Spend an action to pinpoint a target and grant your squad cumulative aim and anti-dodge bonuses on attacks against that target for the rest of the turn.<br/><Bullet/> Each successive direct weapon attack against the target in the same turn grants an additional +<ABILITY:FOCUS_FIRE_AIM_BONUS/> aim and +<ABILITY:FOCUS_FIRE_ANTIDODGE_BONUS/> anti-dodge bonus.<br/><Bullet/> Focus Fire has a <ABILITY:FOCUS_FIRE_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation
 
 ;displayed both on officer and on soldiers receiving effect

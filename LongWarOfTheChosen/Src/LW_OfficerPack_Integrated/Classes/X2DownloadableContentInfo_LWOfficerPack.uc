@@ -440,6 +440,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FOCUS_FIRE_ARMORPIERCING':
 			OutString = string(class'X2Effect_FocusFire'.default.ARMORPIERCINGEFFECT);
 			return true;
+		case 'FOCUS_FIRE_ANTIDODGE_BONUS':
+			OutString = string(class'X2Effect_FocusFire'.default.ANTIDODGEPERATTACK);
+			return true;
 		case 'GETSOME_CRIT_BONUS':
 			OutString = string(class'X2Ability_OfficerAbilitySet'.default.GETSOME_CRIT_BONUS);
 			return true;

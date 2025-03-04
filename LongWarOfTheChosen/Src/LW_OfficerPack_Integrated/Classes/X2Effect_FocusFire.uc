@@ -11,6 +11,7 @@ var config int FOCUSFIRE_DURATION;
 var config int FOCUSFIRE_COOLDOWN;
 var config int ARMORPIERCINGEFFECT;
 var config int AIMBONUSPERATTACK;
+var config int ANTIDODGEPERATTACK;
 var config array<name> VALIDWEAPONCATEGORIES;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
@@ -122,7 +123,7 @@ static function EventListenerReturn FocusFireCheck(Object EventData, Object Even
 
 simulated function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
-	local ShotModifierInfo AccuracyInfo;
+	local ShotModifierInfo AccuracyInfo, DodgeModifierInfo;
 	local UnitValue AttackCount;
 
 	Target.GetUnitValue('FocusFireAttacks_LW', AttackCount);
@@ -131,6 +132,11 @@ simulated function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, X
 	AccuracyInfo.Value = default.AIMBONUSPERATTACK * Max(1, AttackCount.fValue);
 	AccuracyInfo.Reason = FriendlyName;
 	ShotModifiers.AddItem(AccuracyInfo);
+
+	DodgeModifierInfo.ModType = eHit_Graze;
+	DodgeModifierInfo.Value = -Min(default.ANTIDODGEPERATTACK * Max(1, AttackCount.fValue), Target.GetCurrentStat(eStat_Dodge));
+	DodgeModifierInfo.Reason = FriendlyName;
+	ShotModifiers.AddItem(DodgeModifierInfo);
 }
 
 function int GetArmorMitigation(XComGameState_Effect EffectState, XComGameState_Unit UnitState) { return -default.ARMORPIERCINGEFFECT; }
