@@ -20,6 +20,11 @@ var config int WALK_FIRE_CRIT_MALUS;
 var config int WALK_FIRE_COOLDOWN;
 var config int WALK_FIRE_AMMO_COST;
 var config int WALK_FIRE_MIN_ACTION_REQ;
+var config int HAIL_OF_BULLETS_MRH_AIM_BONUS;
+var config int HAIL_OF_BULLETS_MRH_CRIT_MALUS;
+var config int HAIL_OF_BULLETS_MRH_COOLDOWN;
+var config int HAIL_OF_BULLETS_MRH_AMMO_COST;
+var config int HAIL_OF_BULLETS_MRH_MIN_ACTION_REQ;
 var config int PRECISION_SHOT_COOLDOWN;
 var config int PRECISION_SHOT_AMMO_COST;
 var config int PRECISION_SHOT_CRIT_BONUS;
@@ -174,6 +179,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(DoubleTap2ndShot()); //Additional Ability
 	Templates.AddItem(AddTraverseFireAbility());
 	Templates.AddItem(AddWalkFireAbility());
+	Templates.AddItem(AddHailOfBulletsLWAbility());
 	Templates.AddItem(WalkFireDamage()); //Additional Ability
 	Templates.AddItem(AddPrecisionShotAbility());
 	Templates.AddItem(AddPrecisionShotSnapShotAbility());
@@ -1338,6 +1344,99 @@ static function X2AbilityTemplate WalkFireDamage()
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
     return Template;
 
+}
+
+// Walkfire, but with full damage and more ammo usage. Meant to replace HailOfBullets.
+static function X2AbilityTemplate AddHailOfBulletsLWAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown					Cooldown;	
+	local X2Effect_Knockback				KnockbackEffect;
+	local X2Condition_Visibility            VisibilityCondition;
+	local X2Condition_UnitInventory			InventoryCondition, InventoryCondition2;
+	local X2Condition_UnitEffects			SuppressedCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'HailofBullets_MrH');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_hailofbullets";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.DisplayTargetHitChance = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.CinescriptCameraType = "StandardGunFiring";
+	Template.Hostility = eHostility_Offensive;
+	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
+	Template.bCrossClassEligible = false;
+	Template.bUsesFiringCamera = true;
+	Template.bPreventsTargetTeleport = false;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	InventoryCondition = new class'X2Condition_UnitInventory';
+	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
+	InventoryCondition.ExcludeWeaponCategory = 'shotgun';
+	Template.AbilityShooterConditions.AddItem(InventoryCondition);
+
+	InventoryCondition2 = new class'X2Condition_UnitInventory';
+	InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
+	InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
+	Template.AbilityShooterConditions.AddItem(InventoryCondition2);
+
+	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = default.HAIL_OF_BULLETS_MRH_MIN_ACTION_REQ;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.HAIL_OF_BULLETS_MRH_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = default.HAIL_OF_BULLETS_MRH_AMMO_COST;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = default.HAIL_OF_BULLETS_MRH_AIM_BONUS;
+	ToHitCalc.BuiltInCritMod = -default.HAIL_OF_BULLETS_MRH_CRIT_MALUS;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AddShooterEffectExclusions();
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 1;
+	Template.AddTargetEffect(KnockbackEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	//WOULDBENICE: Custom animation of firing/missing/firing again
+
+	return Template;
 }
 
 static function X2AbilityTemplate AddPrecisionShotAbility()

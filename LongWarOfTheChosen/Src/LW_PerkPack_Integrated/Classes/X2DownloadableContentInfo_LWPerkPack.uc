@@ -453,6 +453,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'WALK_FIRE_CRIT_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.WALK_FIRE_CRIT_MALUS);
 			return true;
+		case 'HAIL_OF_BULLETS_MRH_AIM_BONUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.HAIL_OF_BULLETS_MRH_AIM_BONUS);
+			return true;
+		case 'HAIL_OF_BULLETS_MRH_CRIT_MALUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.HAIL_OF_BULLETS_MRH_CRIT_MALUS);
+			return true;
 		case 'GUNSLINGER_TILES_RANGE':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_METERS_RANGE * 2 / 3);
 			return true;
