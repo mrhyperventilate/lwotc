@@ -69,6 +69,8 @@ static function EventListenerReturn SteadyWeaponActionListener(Object EventData,
 				CostlyAction = true;
 			if (AbilityState.GetMyTemplateName() == 'LightningHands')
 				CostlyAction = true;
+			if (AbilityState.GetMyTemplateName() == 'Grapple' || AbilityState.GetMyTemplateName() == 'GrapplePowered' || AbilityState.GetMyTemplateName() == 'SkirmisherGrapple')
+				CostlyAction = true;
 			if (CostlyAction) 
 			{
 				if (AbilityState.GetMyTemplateName() == 'SteadyWeapon' || AbilityState.GetMyTemplateName() == 'Stock_LW_Bsc_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Adv_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Sup_Ability')
