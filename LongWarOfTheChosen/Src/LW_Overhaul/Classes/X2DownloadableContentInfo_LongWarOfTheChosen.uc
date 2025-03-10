@@ -7310,3 +7310,45 @@ exec function MrH_SelectRandomVoice()
 	unit.kAppearance.nmVoice = characterGenerator.GetVoiceFromCountryAndGender(unit.GetCountry(), unit.kAppearance.iGender);
 	class'Helpers'.static.OutputMsg("Voice changed: " $ oldVoiceName $ " -> " $ unit.kAppearance.nmVoice);
 }
+
+exec function MrH_TogglePathingUI()
+{
+	local XComTacticalCheatManager TacticalCheatManager;
+	local XComWorldData WorldData;
+	local XGUnit Unit;
+
+	TacticalCheatManager = `CHEATMGR;
+	if (TacticalCheatManager == none) return;
+
+	// Adapted from UIDebugMarketing
+	if (!TacticalCheatManager.bHidePathingPawn) {
+		TacticalCheatManager.bHidePathingPawn = true;
+		TacticalCheatManager.m_bAllowTether = false;
+
+		WorldData = class'XComWorldData'.static.GetWorldData();
+		if (WorldData != none && WorldData.Volume != none) {
+			class'XComWorldData'.static.GetWorldData().Volume.BorderComponent.SetCinematicHidden(!TacticalCheatManager.m_bAllowTether);
+			class'XComWorldData'.static.GetWorldData().Volume.BorderComponentDashing.SetCinematicHidden(!TacticalCheatManager.m_bAllowTether);
+		}
+
+		TacticalCheatManager.UISetDiscState(false);
+		foreach `BATTLE.AllActors(class'XGUnit', Unit) {
+			Unit.RefreshUnitDisc();
+		}
+	} else {
+		TacticalCheatManager.bHidePathingPawn = false;
+		TacticalCheatManager.m_bAllowTether = true;
+
+		WorldData = class'XComWorldData'.static.GetWorldData();
+		if (WorldData != none && WorldData.Volume != none) {
+			class'XComWorldData'.static.GetWorldData().Volume.BorderComponent.SetCinematicHidden(!TacticalCheatManager.m_bAllowTether);
+			class'XComWorldData'.static.GetWorldData().Volume.BorderComponentDashing.SetCinematicHidden(!TacticalCheatManager.m_bAllowTether);
+		}
+
+		TacticalCheatManager.UISetDiscState(true);
+
+		foreach `BATTLE.AllActors(class'XGUnit', Unit) {
+			Unit.RefreshUnitDisc();
+		}
+	}
+}
