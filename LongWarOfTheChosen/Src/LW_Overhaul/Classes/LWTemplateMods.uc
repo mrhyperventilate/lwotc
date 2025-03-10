@@ -2035,6 +2035,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'SkullOuch')
 	{
 		Template.BuildNewGameStateFn = SkullOuch_BuildGameState;
+
+		// SkullOuch bypasses shields
+		for (k = 0; k < Template.AbilityTargetEffects.length; k++) {
+			WeaponDamageEffect = X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[k]);
+			if (WeaponDamageEffect != none) {
+				WeaponDamageEffect.bBypassShields = true;
+			}
+		}
 	}
 }
 
