@@ -6052,7 +6052,7 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	local XComGameState						NewGameState;
 	local XComGameState_HeadquartersXCom	XComHQ;
 	local name								ClassName;
-	local int								i, NumRanks, iXP, HPDelta, WillDelta;
+	local int								i, j, NumRanks, iXP, HPDelta, WillDelta;
 	local array<XComGameState_Item>			EquippedImplants;
 
 	History = `XCOMHISTORY;
@@ -6121,6 +6121,18 @@ static function RespecSoldier(XComGameState_Unit UnitState, optional bool bReset
 	// Restore missing hit and will points
 	UnitState.ModifyCurrentStat(eStat_HP, -HPDelta);
 	UnitState.ModifyCurrentStat(eStat_Will, -WillDelta);
+
+	// Since class skills are predetermined, just go ahead and buy them now
+	if (!UnitState.IsResistanceHero()) {
+		for (i = 0; i < NumRanks; i++) {
+			for (j = 0; j < 3; j++) {
+				if (class'X2EventListener_Soldiers'.static.CanPurchaseAbility(UnitState, i, j)) {
+					UnitState.BuySoldierProgressionAbility(NewGameState, i, j);
+					break;
+				}
+			}
+		}
+	}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
 	{
