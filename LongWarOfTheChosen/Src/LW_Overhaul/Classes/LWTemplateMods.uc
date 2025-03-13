@@ -2885,6 +2885,13 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'GrenadeLauncher_MG':
 			WeaponTemplate.Abilities.AddItem('HeavyOrdnanceV2');
 			break;
+		case 'TLE_AssaultRifle_CV':
+		case 'TLE_Cannon_CV':
+		case 'TLE_SniperRifle_CV':
+		case 'TLE_Shotgun_CV':
+			// Remove starting TLP weapons that grant bonuses
+			WeaponTemplate.StartingItem = false;
+			break;
 		default:
 			break;
 		}
