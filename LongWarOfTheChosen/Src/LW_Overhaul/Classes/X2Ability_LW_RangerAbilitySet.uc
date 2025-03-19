@@ -453,5 +453,8 @@ static function X2AbilityTemplate AddPassSidearm()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
+	// Do not penalize officers for carrying a pistol
+	Template.AdditionalAbilities.AddItem('QuickdrawMobilityIncrease');
+
 	return Template;
 }

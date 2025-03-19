@@ -663,9 +663,9 @@ LocPromotionPopUpText="<Bullet/> Sprinter provides 1 bonus mobility."
 
 [TakeThis X2AbilityTemplate]
 LocFriendlyName="You'll Need This"
-LocLongDescription="Pass a spare pistol to a civilian ally."
-LocHelpText="Pass a spare pistol to a nearby civilian ally."
-LocPromotionPopupText="<Bullet/> Anytime you equip a pistol (of any technology level), you carry a spare conventional pistol that you can hand to any adjacent civilian ally who does not already have a pistol.<br/><Bullet/> The spare pistol does not impose a weight penalty on this soldier, but the ally will incur a one-mobility penalty when receiving the sidearm.<br/><Bullet/> Note: This ability will not appear in your Tactical ability icons unless you can use it."
+LocLongDescription="Pass a spare pistol to a civilian ally. Negates the mobility penalty for carrying a pistol."
+LocHelpText="Pass a spare pistol to a nearby civilian ally. Negates the mobility penalty for carrying a pistol."
+LocPromotionPopupText="<Bullet/> Anytime you equip a pistol (of any technology level), you carry a spare conventional pistol that you can hand to any adjacent civilian ally who does not already have a pistol.<br/><Bullet/> Neither pistol imposes a weight penalty on this soldier, but the ally will incur a one-mobility penalty when receiving the sidearm.<br/><Bullet/> Note: This ability will not appear in your Tactical ability icons unless you can use it."
 
 ;;;;;;;;;;;;;;;;;;;;  SHARPSHOOTER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
