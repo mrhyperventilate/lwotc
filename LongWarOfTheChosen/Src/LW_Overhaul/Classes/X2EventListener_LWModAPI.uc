@@ -106,7 +106,7 @@ static protected function EventListenerReturn LWUnitInfoReturn(Object EventData,
 		Tuple.Data[1].i = class'LWOfficerUtilities'.static.GetOfficerComponent(Unit).GetOfficerRank();				//officer rank
 		Tuple.Data[2].s = class'LWOfficerUtilities'.static.GetLWOfficerRankName(Tuple.Data[1].i);					//rankname full
 		Tuple.Data[3].s = class'LWOfficerUtilities'.static.GetLWOfficerShortRankName(Tuple.Data[1].i);				//rankname short
-		Tuple.Data[4].s = class'LWOfficerUtilities'.static.GetRankIcon(Tuple.Data[1].i);							//rankicon path
+		Tuple.Data[4].s = class'UIUtilities_Image'.static.GetRankIcon(Unit.GetRank(), Unit.GetSoldierClassTemplateName());							//rankicon path
 	}
 
 	//Is In haven
