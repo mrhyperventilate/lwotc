@@ -1207,6 +1207,7 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 
 	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	DamageEffect.bIgnoreArmor = true;
+	DamageEffect.bBypassShields = true;
 	DamageEffect.TargetConditions.AddItem(TargetCondition);
 	Template.AddTargetEffect(DamageEffect);
 	Template.AddMultiTargetEffect(DamageEffect);
