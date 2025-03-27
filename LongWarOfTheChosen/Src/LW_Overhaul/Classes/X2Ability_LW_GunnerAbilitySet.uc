@@ -32,7 +32,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddCombativesCounterattackAbility());
 	Templates.AddItem(CombativesStats());
 	Templates.AddItem(AddFlushAbility());
+	Templates.AddItem(AddFlushSnapShotAbility());
 	Templates.AddItem(FlushDamage());
+	Templates.AddItem(FlushSnapShotDamage());
 	//Templates.AddItem(AddHeavyReloadAbility());
 	return Templates;
 }
@@ -330,7 +332,7 @@ static function X2AbilityTemplate AddFlushAbility()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local XMBAbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown					Cooldown;
+	local X2AbilityCooldown_Shared					Cooldown;
 	local X2Condition_Visibility            VisibilityCondition;
 	local X2Effect_FallBack					FallBackEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
@@ -342,7 +344,8 @@ static function X2AbilityTemplate AddFlushAbility()
 
 	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFlush";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+	Template.HideIfAvailable.AddItem('FlushSnapShot');
 	Template.bCrossClassEligible = true;
 	Template.Hostility = eHostility_Offensive;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY - 1;
@@ -360,8 +363,9 @@ static function X2AbilityTemplate AddFlushAbility()
 	ActionPointCost.bAddWeaponTypicalCost = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Cooldown = new class'X2AbilityCooldown';
+	Cooldown = new class'X2AbilityCooldown_Shared';
     Cooldown.iNumTurns = default.FLUSH_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('FlushSnapShot');
     Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
@@ -417,6 +421,7 @@ static function X2AbilityTemplate AddFlushAbility()
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 
 	Template.AdditionalAbilities.AddItem('FlushDamage');
+	Template.AdditionalAbilities.AddItem('FlushSnapShot');
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
@@ -429,6 +434,128 @@ static function X2AbilityTemplate AddFlushAbility()
 	return Template;
 }
 
+static function X2AbilityTemplate AddFlushSnapShotAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local XMBAbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared					Cooldown;
+	local X2Condition_Visibility            VisibilityCondition;
+	local X2Effect_FallBack					FallBackEffect;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_UnitProperty			ShooterCondition;
+	local X2Effect_PersistentStatChange		NerfEffect;
+	local XMBCondition_CoverType CoverCondition;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FlushSnapShot');
+
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFlush";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.bCrossClassEligible = true;
+	Template.Hostility = eHostility_Offensive;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY - 1;
+	Template.DisplayTargetHitChance = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.CinescriptCameraType = "StandardGunFiring";
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.bPreventsTargetTeleport = true;
+	Template.bUsesFiringCamera = true;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	ActionPointCost.bAddWeaponTypicalCost = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+    Cooldown.iNumTurns = default.FLUSH_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Flush');
+    Template.AbilityCooldown = Cooldown;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = default.FLUSH_AMMO_COST;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ShooterCondition=new class'X2Condition_UnitProperty';
+	ShooterCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(ShooterCondition);
+
+	// Change flat aim bonus to cover negation
+	ToHitCalc = new class'XMBAbilityToHitCalc_StandardAim';
+	ToHitCalc.CoverNegationMod = default.FLUSH_AIM_BONUS;
+	ToHitCalc.bAllowCrit = false;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AddShooterEffectExclusions();
+
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+	CoverCondition.bRequireCanTakeCover = true;
+	Template.AbilityTargetConditions.AddItem(CoverCondition);
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
+	FallBackEffect = new class'X2Effect_FallBack';
+	FallBackEffect.BehaviorTree = 'FlushRoot';
+	Template.AddTargetEffect(FallBackEffect);
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	NerfEffect = new class'X2Effect_PersistentStatChange';
+	NerfEffect.BuildPersistentEffect(default.FLUSH_STATEFFECT_DURATION, false, false, true, eGameRule_PlayerTurnBegin);
+	NerfEffect.AddPersistentStatChange(eStat_Dodge, -float(default.FLUSH_DODGE_REDUCTION));
+	NerfEffect.AddPersistentStatChange(eStat_Defense, -float(default.FLUSH_DEFENSE_REDUCTION));
+	NerfEffect.SetDisplayInfo (ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	NerfEffect.DuplicateResponse = eDupe_Allow;
+	Template.AddTargetEffect(NerfEffect);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.bAllowAmmoEffects = false;
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+
+	Template.AdditionalAbilities.AddItem('FlushSnapShotDamage');
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+
+	return Template;
+}
 
 static function X2AbilityTemplate FlushDamage()
 {
@@ -449,6 +576,33 @@ static function X2AbilityTemplate FlushDamage()
 	DamagePenalty.Mult = true;
 	DamagePenalty.DamageMod = default.FLUSH_DAMAGE_PENALTY;
 	DamagePenalty.ActiveAbility = 'Flush';
+    DamagePenalty.BuildPersistentEffect(1, true, false, false);
+    Template.AddTargetEffect(DamagePenalty);
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+    return Template;
+}
+
+static function X2AbilityTemplate FlushSnapShotDamage()
+{
+    local X2AbilityTemplate						Template;
+	local X2Effect_AbilityDamageMult			DamagePenalty;
+
+    `CREATE_X2ABILITY_TEMPLATE (Template, 'FlushSnapShotDamage');
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	DamagePenalty = new class'X2Effect_AbilityDamageMult';
+	DamagePenalty.Penalty = true;
+	DamagePenalty.Mult = true;
+	DamagePenalty.DamageMod = default.FLUSH_DAMAGE_PENALTY;
+	DamagePenalty.ActiveAbility = 'FlushSnapShot';
     DamagePenalty.BuildPersistentEffect(1, true, false, false);
     Template.AddTargetEffect(DamagePenalty);
 
